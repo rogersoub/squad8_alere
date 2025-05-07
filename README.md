@@ -11,7 +11,7 @@
 1. Dar **git pull**
 * Vai pegar todas as atualizações
 
-2.Crie sua Branch com seu nome.
+2. Crie sua Branch com seu nome.
 * Faça seus códigos
 
 3. Faça seu add e commit.
