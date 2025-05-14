@@ -1,0 +1,32 @@
+datasource db {
+  provider = "sqlite"
+  url      = env ("DATABASE_URL")
+}
+
+
+generator client {
+provider =  "prisma-client-js"
+}
+
+enum categoria {
+  LEGUME 
+  FRUTA
+  DOCE
+  CARNE
+  TRANSGENICO
+  LANCHE
+  REFEICAO
+}
+
+model alimento {
+id              String            @id @default(uuid())
+nome            String 
+descricao       String
+peso            Int 
+validade        String
+categoria       categoria
+estado          Int
+imagem_url      String
+criado_em       DateTime           @default(now())
+Atualizado_em   DateTime           @updatedAt 
+}
