@@ -11,3 +11,16 @@ CREATE TABLE "alimento" (
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "Atualizado_em" DATETIME NOT NULL
 );
+
+-- CreateTable
+CREATE TABLE "receptor" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "nome" TEXT NOT NULL,
+    "tipo" TEXT NOT NULL,
+    "endereco" TEXT NOT NULL,
+    "contato" TEXT NOT NULL,
+    "capacidade_recebimento" INTEGER NOT NULL,
+    "alimentos_recebidos" INTEGER NOT NULL,
+    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "Atualizado_em" DATETIME NOT NULL
+);
