@@ -12,14 +12,14 @@ import{
 class DistribuidorController{
 
     //controller do read
-    async getDistribuidorController(req,res){
-        const DistribuidorController = await getDistribuidor();
+    async getdistribuidorController(req,res){
+        const distribuidorController = await getdistribuidor();
 
-        res.status(200).json({message:"Todos os Distribuidores: ", DistribuidorController});
+        res.status(200).json({message:"Todos os distribuidores: ", distribuidorController});
     }
 
     //controller do create
-    async createDistribuidorController(req, res){
+    async createdistribuidorController(req, res){
         //corpo da requisicao
         const{
             nome,          
@@ -56,7 +56,7 @@ class DistribuidorController{
             });
         }
 
-        const DistribuidorCre = await createDistribuidor({
+        const distribuidorCre = await createdistribuidor({
             nome,           
             contato,
             documento,
@@ -67,25 +67,25 @@ class DistribuidorController{
         });
 
         res.status(201).json({
-            message:"Distribuidor criado!", DistribuidorCre
+            message:"distribuidor criado!", distribuidorCre
         });
 
     } 
 
     //DELETE
-    async deleteDistribuidorController(req,res){
+    async deletedistribuidorController(req,res){
         //parametro da requisicao
         const {id} = req.params; 
 
-        const DistribuidorDel =  await deleteDistribuidor(id);
+        const distribuidorDel =  await deletedistribuidor(id);
 
-        if(!DistribuidorDel) return res.status(404).json({
-            message:"Distribuidor não enconstrado"
+        if(!distribuidorDel) return res.status(404).json({
+            message:"distribuidor não enconstrado"
         });
 
         res.status(200).json({
-            message:"Distribuidor deletado!",
-            DistribuidoroDeletado: DistribuidorDel
+            message:"distribuidor deletado!",
+            distribuidoroDeletado: distribuidorDel
         });
 
     }
@@ -132,7 +132,7 @@ class DistribuidorController{
             });
         }
 
-        const DistribuidorUp = await updateDistribuidor(id,{
+        const distribuidorUp = await updateDistribuidor(id,{
             nome,           
             contato,
             documento,
@@ -141,12 +141,12 @@ class DistribuidorController{
             criado_em,
             atualizado_em,
         });
-        if(!DistribuidorUp)return res.status(404).json({
-            message:"Distribuidor não enconstrado"
+        if(!distribuidorUp)return res.status(404).json({
+            message:"distribuidor não enconstrado"
             });
         
         res.status(200).json({
-            message:"Distribuidor Atualizado!",  updateDistribuidor:DistribuidorUp
+            message:"distribuidor Atualizado!",  updatedistribuidor:distribuidorUp
         });
 
      }
@@ -157,4 +157,4 @@ class DistribuidorController{
 
 }
 
-export default new DistribuidorController();
+export default new distribuidorController();
