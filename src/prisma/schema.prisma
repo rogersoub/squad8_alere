@@ -74,3 +74,15 @@ model receptor{
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt 
 }
+//documento(cnpj/cpf) alimentos vai receber de alimento
+model distribuidor {
+id              String              @id @default(uuid())
+nome            String   
+contato         String
+documento       String
+alimentos       String
+regiao_atuacao  String
+criado_em       DateTime           @default(now())
+Atualizado_em   DateTime           @updatedAt 
+}
+//documento(cnpj/cpf) alimentos vai receber de alimento
