@@ -30,3 +30,26 @@ imagem_url      String
 criado_em       DateTime           @default(now())
 Atualizado_em   DateTime           @updatedAt 
 }
+
+
+enum tipo {
+  ONG
+  ESCOLA
+  HOSPITAL
+  PJ
+  PF
+  OUTRO
+
+} 
+
+model receptor{
+  id                       String              @id @default(uuid())
+  nome                     String
+  tipo                     tipo
+  endereco                 String
+  contato                  String
+  capacidade_recebimento   Int
+  alimentos_recebidos      Int
+  criado_em                DateTime             @default(now())
+  Atualizado_em            DateTime             @updatedAt 
+}
