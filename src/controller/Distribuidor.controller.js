@@ -1,4 +1,4 @@
-//seervicos
+//servicos
 import{
     getDistribuidor,
     createDistribuidor,
@@ -67,14 +67,14 @@ class DistribuidorController{
 
         res.status(200).json({
             message:"distribuidor deletado!",
-            distribuidoroDeletado: distribuidorDel
+            distribuidorDeletado: distribuidorDel
         });
 
     }
 
 
     //UPDATE (delete+create)
-     async updateDistribuidorControlller(){
+     async updateDistribuidorController(){
         //parametro da requisicao
         const {id} = req.params; 
         //corpo da requisicao
@@ -123,7 +123,7 @@ class DistribuidorController{
             });
         
         res.status(200).json({
-            message:"distribuidor Atualizado!",  updateDistribuidor:distribuidorUp
+            message:"distribuidor Atualizado!",  Distribuidor:distribuidorUp
         });
 
      }

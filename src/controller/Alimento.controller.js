@@ -12,7 +12,7 @@ import{
 class AlimentoController{
 
     //controller do read
-    async getAlimentoController(req,res){
+    async getAlimentoController(req, res){
         const alimentoController = await getAlimento();
 
         res.status(200).json({message:"Todos os alimentos: ", alimentoController});
@@ -91,7 +91,7 @@ class AlimentoController{
 
 
     //UPDATE (delete+create)
-     async updateAlimentoControlller(){
+     async updateAlimentoController(){
         //parametro da requisicao
         const {id} = req.params; 
         //corpo da requisicao

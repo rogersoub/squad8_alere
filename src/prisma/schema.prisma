@@ -84,3 +84,14 @@ model receptor{
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt 
 }
+
+model estatistica{
+  id                       String              @id @default(uuid())
+  mais_desperdicados       String
+  total_alimentos          Int
+  total_doacoes            Int
+  total_recebidos          Int
+  ranking_categoria        Json
+  criado_em                DateTime             @default(now())
+  atualizado_em            DateTime             @updatedAt
+}
