@@ -86,3 +86,17 @@ criado_em       DateTime           @default(now())
 Atualizado_em   DateTime           @updatedAt 
 }
 //documento(cnpj/cpf) alimentos vai receber de alimento
+
+enum tipagem{
+  Importante
+  Urgente
+}
+
+model Notificaoes{
+  id                     String   @id @default(uuid()) 
+  categoria              tipagem
+  mensagem               String
+  destinatario           String
+  lida                   Boolean
+  criado_em              DateTime @default(now())
+}

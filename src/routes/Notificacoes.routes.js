@@ -1,0 +1,17 @@
+import { Router } from "express";
+import AlimentoController from "../controller/Notificacoes.controller.js";
+
+const NotificacoesRoutes = Router();
+//READ das rotas
+NotificacoesRoutes.get("/", NotificacoesController.getNotificacoesController);
+
+//CREATE das rotas
+NotificacoesRoutes.post("/cadastro",NotificacoesController.createNotificacoesController);
+
+//UPDATE das rotas
+NotificacoesRoutes.put("/atualizar/:id",NotificacoesController.updateNotificacoesControlller);
+
+//DELETE das rotas
+NotificacoesRoutes.delete("/deletar/:id",NotificacoesController.deleteNotificacoesController);
+
+export default NotificacoesRoutes;
