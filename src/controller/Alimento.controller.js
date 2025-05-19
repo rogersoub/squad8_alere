@@ -1,4 +1,4 @@
-//seervicos
+//servicos
 import{
     getAlimento,
     createAlimento,
@@ -7,6 +7,7 @@ import{
 } from "../service/Alimento.service.js";
 //depois colocar logs
 
+import { categoria as CategoriaPrisma } from "@prisma/client";
 //import { categoriaENUM } from "@prisma/client";
 
 class AlimentoController{
@@ -20,6 +21,7 @@ class AlimentoController{
 
     //controller do create
     async createAlimentoController(req, res){
+        console.log("req.body: ", req.body);
         //corpo da requisicao
         const{
             nome,          
@@ -49,10 +51,8 @@ class AlimentoController{
         );
 
         //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
-            });
+        if (!Object.values(CategoriaPrisma).includes(categoria)) {
+            return res.status(400).json({ message: "Categoria inválida" });
         }
 
         const alimentoCre = await createAlimento({
@@ -91,7 +91,7 @@ class AlimentoController{
 
 
     //UPDATE (delete+create)
-     async updateAlimentoController(){
+     async updateAlimentoController(req, res){
         //parametro da requisicao
         const {id} = req.params; 
         //corpo da requisicao
@@ -117,11 +117,6 @@ class AlimentoController{
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
-
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
 
         //se não existe
         if(typeof categoriaEncontrada === "Undefined"){

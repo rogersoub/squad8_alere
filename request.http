@@ -1,20 +1,13 @@
-### Pesquisando alimento
-GET http://localhost:3000/alimento/
-
-Content-Type: application/json 
-
-### Colocando alimento
-
 POST http://localhost:3000/alimento/cadastro
 
 Content-Type: application/json 
 
 {
-    "nome": "Arroz Integral",
+    "nome": "Arroz",
     "descricao": "Pacote de arroz integral 1kg",
     "peso": 1000,
     "validade": "2025-06-10",
-    "categoria": "Grãos",
+    "categoria": "LEGUME",
     "estado": 1,
     "imagem_url": "https://exemplo.com/imagens/arroz.jpg"
   }
