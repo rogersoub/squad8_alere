@@ -3,13 +3,13 @@ import { PrismaClient } from "@prisma/client";
 const prisma =  new PrismaClient();
 
 //READ
-export async function getdistribuidor(){
+export async function getDistribuidor(){
     const rows = await prisma.distribuidor.findMany();
     return rows;
 }
 
 //CREATE
-export async function createdistribuidor(db){
+export async function createDistribuidor(db){
     const created = await prisma.distribuidor.create({
         data: {
             nome: db.nome,                       
@@ -17,14 +17,12 @@ export async function createdistribuidor(db){
             documento: db.documento,
             alimentos: db.alimentos,
             regiao_atuacao: db.regiao_atuacao,
-            criado_em:db.criado_em,
-            atualizado_em: db.atualizado_em,
         },
     });
     return created;
 }
 
-export async function distribuidor(id){
+export async function deleteDistribuidor(id){
     const consists = await prisma.distribuidor.findUnique({where: {id} });
     if(!consists) return null;
 
@@ -36,7 +34,7 @@ export async function distribuidor(id){
 
 //UPDATE
 //nao recebe o criado em
-export async function updatedistribuidor(id, db){
+export async function updateDistribuidor(id, db){
     const update = await prisma.distribuidor.update({
         where:{id},
         data:{

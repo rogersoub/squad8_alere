@@ -1,0 +1,14 @@
+POST http://localhost:3000/alimento/cadastro
+
+Content-Type: application/json 
+
+{
+    "nome": "Arroz",
+    "descricao": "Pacote de arroz integral 1kg",
+    "peso": 1000,
+    "validade": "2025-06-10",
+    "categoria": "LEGUME",
+    "estado": 1,
+    "imagem_url": "https://exemplo.com/imagens/arroz.jpg"
+  }
+

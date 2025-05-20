@@ -9,7 +9,7 @@ alimentoRoutes.get("/",AlimentoController.getAlimentoController);
 alimentoRoutes.post("/cadastro",AlimentoController.createAlimentoController);
 
 //UPDATE das rotas
-alimentoRoutes.put("/atualizar/:id",AlimentoController.updateAlimentoControlller);
+alimentoRoutes.put("/atualizar/:id",AlimentoController.updateAlimentoController);
 
 //DELETE das rotas
 alimentoRoutes.delete("/deletar/:id",AlimentoController.deleteAlimentoController);
