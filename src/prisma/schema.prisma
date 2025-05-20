@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url      = env ("BACKEND_URL")
+  url      = env ("DATABASE_URL")
 }
 
 
@@ -34,12 +34,22 @@ Atualizado_em   DateTime           @updatedAt
 }
 
 
-
+//documento(cnpj/cpf) alimentos vai receber de alimento
+model distribuidor {
+id              String              @id @default(uuid())
+nome            String   
+contato         String
+documento       String
+alimentos       String
+regiao_atuacao  String
+criado_em       DateTime           @default(now())
+Atualizado_em   DateTime           @updatedAt 
+}
 
 
 model doacao {
     id                 String        @id @default(uuid())
-    alimento         String      
+    alimento           String      
     quantidade         Int
     doador_nome        String
     data_doacao        DateTime
@@ -74,15 +84,14 @@ model receptor{
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt 
 }
-//documento(cnpj/cpf) alimentos vai receber de alimento
-model distribuidor {
-id              String              @id @default(uuid())
-nome            String   
-contato         String
-documento       String
-alimentos       String
-regiao_atuacao  String
-criado_em       DateTime           @default(now())
-Atualizado_em   DateTime           @updatedAt 
+
+model estatistica{
+  id                       String              @id @default(uuid())
+  mais_desperdicados       String
+  total_alimentos          Int
+  total_doacoes            Int
+  total_recebidos          Int
+  ranking_categoria        Json
+  criado_em                DateTime             @default(now())
+  atualizado_em            DateTime             @updatedAt
 }
-//documento(cnpj/cpf) alimentos vai receber de alimento
