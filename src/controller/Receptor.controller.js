@@ -43,17 +43,7 @@
                 res.status(400).json({message: "Adicione todos dados corretamente"});
                 }
 
-                const tipoEncontrado = Object.keys(tipoENUM).find(
-                    (key) => tipoENUM [key] === tipo
-                );
-
-                //se nao existe
-                if(typeof tipoEncontrado === "undefined"){
-                    res.status(400).json({
-                        message: "Tipo de receptor não existe"
-                    });
-                }
-
+            try{
                 const receptor = await createReceptor({
                     nome,
                     tipo,
@@ -67,6 +57,11 @@
                     message: "Receptor criado com sucesso",
                     receptor,
                 });
+            }catch(error){
+                res.status(500).json({ message:"Erro ao cadastrar Receptor", error:error.message });
+            }
+
+
         }
         //DELETE
         async deleteReceptorController(req,res){
@@ -111,33 +106,28 @@
                 res.status(400).json({message: "Adicione todos dados corretamente"});
             }
 
-            const tipoEncontrado = Object.keys(tipoENUM).find(
-                (key) => tipoENUM [key] === tipo
-            );
-
-            //se nao existe
-            if(typeof tipoEncontrado === "undefined"){
-                res.status(400).json({
-                    message: "Tipo de receptor não existe"
+            try{
+                const receptor = await uptadeReceptor(id,{
+                    nome,
+                    tipo,
+                    endereco,
+                    contato,
+                    capacidade_recebimento,
+                    alimentos_recebidos,
                 });
+                if(!receptor){
+                    return res.status(404).json({message: "Receptor não encontrado"});
+                }
+
+                res.status(200).json({
+                    message: "Receptor atualizado com sucesso",
+                    receptor,
+                });
+            }catch(error){
+                res.status(500).json({ message:"Erro ao atualizar Receptor", error:error.message });
             }
 
-            const receptor = await uptadeReceptor(id,{
-                nome,
-                tipo,
-                endereco,
-                contato,
-                capacidade_recebimento,
-                alimentos_recebidos,
-            });
-            if(!receptor){
-                return res.status(404).json({message: "Receptor não encontrado"});
-            }
 
-            res.status(200).json({
-                message: "Receptor atualizado com sucesso",
-                receptor,
-            });
         }
     }
     export default new ReceptorController();

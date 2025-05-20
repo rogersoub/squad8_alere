@@ -66,13 +66,26 @@ class NotificacoesController{
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         }   
+        try{
+            const NotificacoesUp = await updateNotificacoes(id, {
+                categoria, 
+                mensagem, 
+                destinatario, 
+                lida,  
+            });
 
-        const NotificacoesUp = await updateNotificacoes(id, {
-            categoria, 
-            mensagem, 
-            destinatario, 
-            lida,  
-        });
+            if(!NotificacoesUp)return res.status(404).json({
+                message:"Notificação não encontrado"
+            });
+        
+            res.status(200).json({
+                message:"Notificação Atualizada!", Notificação:NotificacoesUp
+            });
+
+        }catch(error){
+            res.status(500).json({ message:"Erro ao atualizar Notificação", error:error.message });
+        }
+
 }
 
    // controller do DELETE
