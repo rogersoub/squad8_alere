@@ -1,0 +1,13 @@
+
+POST http://localhost:3000/doacao/cadastro
+
+Content-Type: application/json
+
+{
+  "alimento_nome": "foi",
+  "quantidade": 20,
+  "doador_nome": "Carlos Silva",
+  "data_doacao": "2025-05-08T14:00:00Z",
+  "localizacao": "Rua das Acácias, 120",
+  "validado": true
+}

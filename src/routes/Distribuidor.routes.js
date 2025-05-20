@@ -1,17 +1,18 @@
 import { Router } from "express";
+//classe controller
 import DistribuidorController from "../controller/Distribuidor.controller.js";
 
-const DistribuidorRoutes = Router();
-//READ das rotas
-DistribuidorRoutes.get("/",DistribuidorController.getdistribuidorController);
+const distribuidorRoutes = Router();
+//READ das rotad
+distribuidorRoutes.get("/",DistribuidorController.getDistribuidorController);
 
 //CREATE das rotas
-DistribuidorRoutes.post("/cadastro",DistribuidorController.createdistribuidorController);
+distribuidorRoutes.post("/cadastro",DistribuidorController.createDistribuidorController);
 
 //UPDATE das rotas
-DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuidorControlller);
+distribuidorRoutes.put("/atualizar/:id",DistribuidorController.updateDistribuidorControlller);
 
 //DELETE das rotas
-DistribuidorRoutes.delete("/deletar/:id",DistribuidorController.deletedistribuidorController);
+distribuidorRoutes.delete("/deletar/:id",DistribuidorController.deleteDistribuidorController);
 
-export default DistribuidorRoutes;
+export default distribuidorRoutes;

@@ -20,7 +20,7 @@ class DoacaoController{
     async createDoacaoController(req, res) {
         //corpo da requisição
         const { 
-            alimento, 
+            alimento_nome, 
             quantidade, 
             doador_nome,
             data_doacao, 
@@ -30,7 +30,7 @@ class DoacaoController{
         
         //validando se tem
         if(
-            !alimento || 
+            !alimento_nome || 
             !quantidade ||
             !doador_nome || 
             !data_doacao || 
@@ -41,7 +41,7 @@ class DoacaoController{
         }    
 
         const doacaoCre = await createDoacao({
-            alimento, 
+            alimento_nome, 
             quantidade, 
             doador_nome,
             data_doacao, 
@@ -58,7 +58,7 @@ class DoacaoController{
     async updateDoacaoController(req, res) {
         const { id } = req.params;
         const { 
-            alimento, 
+            alimento_nome, 
             quantidade, 
             doador_nome,
             data_doacao, 
@@ -67,7 +67,7 @@ class DoacaoController{
         } = req.body;
 
         if(
-            !alimento || 
+            !alimento_nome || 
             !quantidade ||
             !doador_nome || 
             !data_doacao || 
@@ -78,7 +78,7 @@ class DoacaoController{
         }    
 
         const doacaoUp = await updateDoacao(id, {
-            alimento, 
+            alimento_nome, 
             quantidade, 
             doador_nome,
             data_doacao, 

@@ -1,4 +1,4 @@
-//seervicos
+//servicos
 import{
     getDistribuidor,
     createDistribuidor,
@@ -6,8 +6,6 @@ import{
     updateDistribuidor,
 } from "../service/Distribuidor.service.js";
 //depois colocar logs
-
-//import { categoriaENUM } from "@prisma/client";
 
 class DistribuidorController{
 
@@ -40,17 +38,23 @@ class DistribuidorController{
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
 
-        const distribuidorCre = await createDistribuidor({
-            nome,           
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-        });
+        try{
+            const distribuidorCre = await createDistribuidor({
+                nome,           
+                contato,
+                documento,
+                alimentos,
+                regiao_atuacao,
+            });
 
-        res.status(201).json({
-            message:"distribuidor criado!", distribuidorCre
-        });
+            res.status(201).json({
+                message:"distribuidor criado!", distribuidorCre
+            });
+        }catch(error){
+            res.status(500).json({ message:"Erro ao cadastrar alimento", error:error.message });
+        }
+
+
 
     } 
 
@@ -62,7 +66,7 @@ class DistribuidorController{
         const distribuidorDel =  await deleteDistribuidor(id);
 
         if(!distribuidorDel) return res.status(404).json({
-            message:"distribuidor não enconstrado"
+            message:"Distribuidor não enconstrado"
         });
 
         res.status(200).json({
@@ -84,8 +88,6 @@ class DistribuidorController{
             documento,
             alimentos,
             regiao_atuacao,
-            criado_em,
-            atualizado_em,
         } = req.body 
 
         //validando se tem
@@ -99,37 +101,27 @@ class DistribuidorController{
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
 
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
-
-        //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
+        try{
+            const distribuidorUp = await updateDistribuidor(id,{
+                nome,           
+                contato,
+                documento,
+                alimentos,
+                regiao_atuacao,
             });
+            if(!distribuidorUp)return res.status(404).json({
+                message:"distribuidor não enconstrado"
+                });
+        
+            res.status(200).json({
+                message:"distribuidor Atualizado!",  updateDistribuidor:distribuidorUp
+            });
+        }catch(error){
+            res.status(500).json({ message:"Erro ao atualizar alimento", error:error.message });
         }
 
-        const distribuidorUp = await updateDistribuidor(id,{
-            nome,           
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-        });
-        if(!distribuidorUp)return res.status(404).json({
-            message:"distribuidor não enconstrado"
-            });
-        
-        res.status(200).json({
-            message:"distribuidor Atualizado!",  updateDistribuidor:distribuidorUp
-        });
 
      }
-
-
-
 
 
 }

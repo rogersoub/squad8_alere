@@ -8,7 +8,7 @@ generator client {
 provider =  "prisma-client-js"
 }
 
-enum categoria {
+enum categoriaDB {
   LEGUME 
   FRUTA
   DOCE
@@ -24,7 +24,7 @@ nome            String
 descricao       String
 peso            Int 
 validade        String
-categoria       categoria
+categoria       categoriaDB
 estado          Int
 imagem_url      String
 criado_em       DateTime           @default(now())
@@ -49,7 +49,7 @@ Atualizado_em   DateTime           @updatedAt
 
 model doacao {
     id                 String        @id @default(uuid())
-    alimento           String      
+    alimento_nome      String      
     quantidade         Int
     doador_nome        String
     data_doacao        DateTime
