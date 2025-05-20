@@ -2,8 +2,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
-
 //iniciando o env primeiro
 dotenv.config();
 
@@ -21,6 +19,7 @@ app.use(cors(cors_config));
 import alimentoRoutes from "./routes/Alimento.routes.js";
 import receptorRoutes from "./routes/Receptores.routes.js";
 import doacaoRoutes from "./routes/Doacao.routes.js";
+import notificacoesRoutes from "./routes/Notificacoes.routes.js";
 import distribuidorRoutes from "./routes/Distribuidor.routes.js";
 
 
@@ -31,6 +30,7 @@ import distribuidorRoutes from "./routes/Distribuidor.routes.js";
 //USANDO ROTAS e definindo a inicial
 app.use("/alimento",alimentoRoutes);
 app.use("/receptor",receptorRoutes);
+app.use("/notificacoes",notificacoesRoutes);
 app.use("/distribuidor",distribuidorRoutes);
 app.use("/doacao",doacaoRoutes);
 

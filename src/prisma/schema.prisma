@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url      = env ("DATABASE_URL")
+  url      = env ("BACKEND_URL")
 }
 
 
@@ -8,7 +8,7 @@ generator client {
 provider =  "prisma-client-js"
 }
 
-enum categoriaDB {
+enum categoriaENUM {
   LEGUME 
   FRUTA
   DOCE
@@ -24,7 +24,7 @@ nome            String
 descricao       String
 peso            Int 
 validade        String
-categoria       categoriaDB
+categoria       categoriaENUM
 estado          Int
 imagem_url      String
 criado_em       DateTime           @default(now())
@@ -63,7 +63,7 @@ model doacao {
 
 
 
-enum tipo {
+enum tipoENUM {
   ONG
   ESCOLA
   HOSPITAL
@@ -76,11 +76,25 @@ enum tipo {
 model receptor{
   id                       String              @id @default(uuid())
   nome                     String
-  tipo                     tipo
+  tipo                     tipoENUM
   endereco                 String
   contato                  String
   capacidade_recebimento   Int
   alimentos_recebidos      Int
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt 
+}
+
+enum tipagemENUM {
+  Importante
+  Urgente
+}
+
+model notificacoes {
+  id                     String   @id @default(uuid()) 
+  categoria              tipagemENUM
+  mensagem               String
+  destinatario           String
+  lida                   Boolean
+  criado_em              DateTime @default(now())
 }
