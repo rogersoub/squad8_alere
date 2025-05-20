@@ -86,8 +86,8 @@ model receptor{
 }
 
 enum tipagemENUM {
-  Importante
-  Urgente
+  IMPORTANTE
+  URGENTE
 }
 
 model notificacoes {

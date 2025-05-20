@@ -23,10 +23,6 @@ import notificacoesRoutes from "./routes/Notificacoes.routes.js";
 import distribuidorRoutes from "./routes/Distribuidor.routes.js";
 
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use('/admin', adminRoutes);
-
 //USANDO ROTAS e definindo a inicial
 app.use("/alimento",alimentoRoutes);
 app.use("/receptor",receptorRoutes);
