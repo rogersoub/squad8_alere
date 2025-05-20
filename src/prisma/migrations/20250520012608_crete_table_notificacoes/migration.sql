@@ -13,7 +13,19 @@ CREATE TABLE "alimento" (
 );
 
 -- CreateTable
-<<<<<<<< HEAD:src/prisma/migrations/20250515235809_create_table_receptor/migration.sql
+CREATE TABLE "doacao" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "alimento" TEXT NOT NULL,
+    "quantidade" INTEGER NOT NULL,
+    "doador_nome" TEXT NOT NULL,
+    "data_doacao" DATETIME NOT NULL,
+    "localizacao" TEXT NOT NULL,
+    "validado" BOOLEAN NOT NULL DEFAULT false,
+    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "atualizado_em" DATETIME NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "receptor" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "nome" TEXT NOT NULL,
@@ -22,7 +34,11 @@ CREATE TABLE "receptor" (
     "contato" TEXT NOT NULL,
     "capacidade_recebimento" INTEGER NOT NULL,
     "alimentos_recebidos" INTEGER NOT NULL,
-========
+    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "Atualizado_em" DATETIME NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "distribuidor" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "nome" TEXT NOT NULL,
@@ -30,7 +46,16 @@ CREATE TABLE "distribuidor" (
     "documento" TEXT NOT NULL,
     "alimentos" TEXT NOT NULL,
     "regiao_atuacao" TEXT NOT NULL,
->>>>>>>> Jaiane:src/prisma/migrations/20250515224807_create_table_distribuidor/migration.sql
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "Atualizado_em" DATETIME NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "notificaoes" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "categoria" TEXT NOT NULL,
+    "mensagem" TEXT NOT NULL,
+    "destinatario" TEXT NOT NULL,
+    "lida" BOOLEAN NOT NULL,
+    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

@@ -24,7 +24,6 @@ class NotificacoesController{
             mensagem, 
             destinatario, 
             lida, 
-            criado_em,
         } = req.body
         
         //validando se tem
@@ -32,8 +31,7 @@ class NotificacoesController{
             !categoria || 
             !mensagem || 
             !destinatario || 
-            !lida || 
-            !criado_em
+            !lida
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         } 
@@ -42,8 +40,7 @@ class NotificacoesController{
             categoria, 
             mensagem, 
             destinatario, 
-            lida, 
-            criado_em,
+            lida,
         }); 
 
     res.status(201).json({message:"Notificação criada com sucesso!", NotificacoesCre});

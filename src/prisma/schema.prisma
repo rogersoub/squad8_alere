@@ -87,12 +87,12 @@ Atualizado_em   DateTime           @updatedAt
 }
 //documento(cnpj/cpf) alimentos vai receber de alimento
 
-enum tipagem{
+enum tipagem {
   Importante
   Urgente
 }
 
-model Notificaoes{
+model notificacoes {
   id                     String   @id @default(uuid()) 
   categoria              tipagem
   mensagem               String
