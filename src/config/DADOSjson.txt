@@ -1,0 +1,70 @@
+**ESTATISTICAS**
+  {
+    "mais_desperdicados": "Verduras",
+    "total_alimentos": 1200,
+    "total_doacoes": 350,
+    "total_recebidos": 290,
+    "ranking_categoria": {
+      "Grãos": 180,
+      "Verduras": 95,
+      "Carnes": 70,
+      "Frutas": 60
+    }
+
+**RECEPTOR**
+
+  {
+    "nome": "Associação Vida Nova",
+    "tipo": "ONG",
+    "endereco": "Av. Brasil, 1450 - BH",
+    "contato": "(31) 99999-0000",
+    "capacidade_recebimento": 200,
+    "alimentos_recebidos": 80,
+    "Atualizado_em": "2025-05-09T11:00:00Z"
+  }
+
+**DOAÇÃO**
+  {
+    "alimento": "Arroz Integral",
+    "quantidade": 20,
+    "doador_nome": "Carlos Silva",
+    "data_doacao": "2025-05-08T14:00:00Z",
+    "localizacao": "Rua das Acácias, 120",
+    "validado": true,
+    "atualizado_em": "2025-05-08T14:30:00Z"
+  }
+
+**DISTRIBUIDOR**
+  {
+    "nome": "Distribuidora Alere",
+    "contato": "contato@alere.org",
+    "documento": "29.345.678/0001-12",
+    "alimentos": "Arroz, Feijão",
+    "regiao_atuacao": "Belo Horizonte",
+    "Atualizado_em": "2025-05-10T08:45:00Z"
+  }
+
+**ALIMENTO**
+
+  {
+    "nome": "Arroz Integral",
+    "descricao": "Pacote de arroz integral 1kg",
+    "peso": 1000,
+    "validade": "2025-06-10",
+    "categoria": "Grãos",
+    "estado": 1,
+    "imagem_url": "https://exemplo.com/imagens/arroz.jpg",
+    "Atualizado_em": "2025-05-10T10:00:00Z"
+  },
+  {
+    "nome": "Feijão Preto",
+    "descricao": "Feijão preto tipo 1",
+    "peso": 1000,
+    "validade": "2025-05-20",
+    "categoria": "Grãos",
+    "estado": 1,
+    "imagem_url": "https://exemplo.com/imagens/feijao.jpg",
+    "Atualizado_em": "2025-05-09T09:30:00Z"
+  }
+
+  }
