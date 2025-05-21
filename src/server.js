@@ -10,9 +10,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3000;
 
-//USANDO API JSON
+
+
+import { swaggerUi, swaggerSpec } from './swagger.js';//USANDO API JSON
 app.use(express.json());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //USANDO ROTAS e definindo a inicial
 app.use("/alimento",alimentoRoutes);
 app.use("/receptor",receptorRoutes);
