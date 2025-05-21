@@ -8,9 +8,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3000;
 
+
+
+
+import { swaggerUi, swaggerSpec } from './swagger.js';//USANDO API JSON
+=======
 const cors_config ={origin: '*' };
 
-//USANDO API JSON
+
 app.use(express.json());
 app.use(cors(cors_config));
 
@@ -24,6 +29,7 @@ import notificacoesRoutes from "./routes/Notificacoes.routes.js";
 import receptorRoutes from "./routes/Receptores.routes.js";
 
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //USANDO ROTAS e definindo a inicial
 app.use("/alimento",alimentoRoutes);
 app.use("/distribuidor",distribuidorRoutes);
