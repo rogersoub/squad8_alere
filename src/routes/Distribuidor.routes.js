@@ -15,7 +15,7 @@ const DistribuidorRoutes = Router();
  *       200:
  *         description: Lista todos os distribuidores cadastrados
  */
-DistribuidorRoutes.get("/",DistribuidorController.getdistribuidorController);
+DistribuidorRoutes.get("/",DistribuidorController.getDistribuidorController);
 
 //CREATE das rotas
 /**
@@ -29,7 +29,7 @@ DistribuidorRoutes.get("/",DistribuidorController.getdistribuidorController);
  *       200:
  *         description: Cadastra um novo distribuidor
  */
-DistribuidorRoutes.post("/cadastro",DistribuidorController.createdistribuidorController);
+DistribuidorRoutes.post("/cadastro",DistribuidorController.createDistribuidorController);
 
 //UPDATE das rotas
 /**
@@ -84,7 +84,7 @@ DistribuidorRoutes.post("/cadastro",DistribuidorController.createdistribuidorCon
  *       404:
  *         description: Distribuidor não encontrado
  */
-DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuidorControlller);
+DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updateDistribuidorControlller);
 
 //DELETE das rotas
 /**
@@ -107,7 +107,7 @@ DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuido
  *       404:
  *         description: Distribuidor não encontrado
  */
-DistribuidorRoutes.delete("/deletar/:id",DistribuidorController.deletedistribuidorController);
+DistribuidorRoutes.delete("/deletar/:id",DistribuidorController.deleteDistribuidorController);
 
 
-export default distribuidorRoutes;
+export default DistribuidorRoutes;

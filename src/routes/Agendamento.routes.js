@@ -128,6 +128,6 @@ AgendamentoRouter.put("/atualizar/:id", AgendamentoController.uptadeAgendamentoC
  *       404:
  *         description: Receptor não encontrado
  */  
-AgendamentoRouter.delete("/deletar/:id", ReceptorController.deleteAgendamentoController);
+AgendamentoRouter.delete("/deletar/:id", AgendamentoController.deleteAgendamentoController);
 
 export default AgendamentoRouter;
