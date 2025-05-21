@@ -12,7 +12,6 @@ const PORT = process.env.BACKEND_PORT || 3000;
 
 
 import { swaggerUi, swaggerSpec } from './swagger.js';//USANDO API JSON
-=======
 const cors_config ={origin: '*' };
 
 
@@ -27,6 +26,7 @@ import doacaoRoutes from "./routes/Doacao.routes.js";
 import estatisticaRoutes from "./routes/Estatistica.routes.js";
 import notificacoesRoutes from "./routes/Notificacoes.routes.js";
 import receptorRoutes from "./routes/Receptores.routes.js";
+import agendamentoRoutes from "./routes/Agendamento.routes.js";
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -37,6 +37,7 @@ app.use("/doacao",doacaoRoutes);
 app.use("/estatisca",estatisticaRoutes);
 app.use("/receptor",receptorRoutes);
 app.use("/notificacoes",notificacoesRoutes);
+app.use("/agendamento",agendamentoRoutes);
 
 
 
