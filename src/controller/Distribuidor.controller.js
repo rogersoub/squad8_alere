@@ -1,4 +1,4 @@
-//seervicos
+//servicos
 import{
     getDistribuidor,
     createDistribuidor,
@@ -7,19 +7,17 @@ import{
 } from "../service/Distribuidor.service.js";
 //depois colocar logs
 
-//import { categoriaENUM } from "@prisma/client";
-
 class DistribuidorController{
 
     //controller do read
-    async getdistribuidorController(req,res){
-        const distribuidorController = await getdistribuidor();
+    async getDistribuidorController(req,res){
+        const distribuidorController = await getDistribuidor();
 
         res.status(200).json({message:"Todos os distribuidores: ", distribuidorController});
     }
 
     //controller do create
-    async createdistribuidorController(req, res){
+    async createDistribuidorController(req, res){
         //corpo da requisicao
         const{
             nome,          
@@ -27,8 +25,6 @@ class DistribuidorController{
             documento,
             alimentos,
             regiao_atuacao,
-            criado_em,
-            atualizado_em,
         } = req.body 
 
         //validando se tem
@@ -37,50 +33,40 @@ class DistribuidorController{
             !contato ||
             !documento ||
             !alimentos ||
-            !regiao_atuacao ||
-            !criado_em ||
-            !atualizado_em ||
-            !req.body
+            !regiao_atuacao 
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
 
-        //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
+        try{
+            const distribuidorCre = await createDistribuidor({
+                nome,           
+                contato,
+                documento,
+                alimentos,
+                regiao_atuacao,
             });
+
+            res.status(201).json({
+                message:"distribuidor criado!", distribuidorCre
+            });
+        }catch(error){
+            res.status(500).json({ message:"Erro ao cadastrar alimento", error:error.message });
         }
 
-        const distribuidorCre = await createdistribuidor({
-            nome,           
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-            criado_em,
-            atualizado_em, 
-        });
 
-        res.status(201).json({
-            message:"distribuidor criado!", distribuidorCre
-        });
 
     } 
 
     //DELETE
-    async deletedistribuidorController(req,res){
+    async deleteDistribuidorController(req,res){
         //parametro da requisicao
         const {id} = req.params; 
 
-        const distribuidorDel =  await deletedistribuidor(id);
+        const distribuidorDel =  await deleteDistribuidor(id);
 
         if(!distribuidorDel) return res.status(404).json({
-            message:"distribuidor não enconstrado"
+            message:"Distribuidor não enconstrado"
         });
 
         res.status(200).json({
@@ -102,8 +88,6 @@ class DistribuidorController{
             documento,
             alimentos,
             regiao_atuacao,
-            criado_em,
-            atualizado_em,
         } = req.body 
 
         //validando se tem
@@ -112,49 +96,34 @@ class DistribuidorController{
             !contato ||
             !documento ||
             !alimentos ||
-            !regiao_atuacao ||
-            !criado_em ||
-            !atualizado_em ||
-            !req.body
+            !regiao_atuacao
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
 
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
-
-        //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
+        try{
+            const distribuidorUp = await updateDistribuidor(id,{
+                nome,           
+                contato,
+                documento,
+                alimentos,
+                regiao_atuacao,
             });
+            if(!distribuidorUp)return res.status(404).json({
+                message:"distribuidor não enconstrado"
+                });
+        
+            res.status(200).json({
+                message:"distribuidor Atualizado!",  updateDistribuidor:distribuidorUp
+            });
+        }catch(error){
+            res.status(500).json({ message:"Erro ao atualizar alimento", error:error.message });
         }
 
-        const distribuidorUp = await updateDistribuidor(id,{
-            nome,           
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-            criado_em,
-            atualizado_em,
-        });
-        if(!distribuidorUp)return res.status(404).json({
-            message:"distribuidor não enconstrado"
-            });
-        
-        res.status(200).json({
-            message:"distribuidor Atualizado!",  updatedistribuidor:distribuidorUp
-        });
 
      }
 
 
-
-
-
 }
 
-export default new distribuidorController();
+export default new  DistribuidorController();

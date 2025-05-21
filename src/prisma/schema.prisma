@@ -8,7 +8,7 @@ generator client {
 provider =  "prisma-client-js"
 }
 
-enum categoria {
+enum categoriaENUM {
   LEGUME 
   FRUTA
   DOCE
@@ -24,7 +24,7 @@ nome            String
 descricao       String
 peso            Int 
 validade        String
-categoria       categoria
+categoria       categoriaENUM
 estado          Int
 imagem_url      String
 criado_em       DateTime           @default(now())
@@ -34,12 +34,34 @@ Atualizado_em   DateTime           @updatedAt
 }
 
 
+//documento(cnpj/cpf) alimentos vai receber de alimento
+model distribuidor {
+id              String              @id @default(uuid())
+nome            String   
+contato         String
+documento       String
+alimentos       String
+regiao_atuacao  String
+criado_em       DateTime           @default(now())
+Atualizado_em   DateTime           @updatedAt 
+}
 
+
+model estatistica {
+  id                       String              @id @default(uuid())
+  mais_desperdicados       String
+  total_alimentos          Int
+  total_doacoes            Int
+  total_recebidos          Int
+  ranking_categoria        Json
+  criado_em                DateTime             @default(now())
+  atualizado_em            DateTime             @updatedAt
+}
 
 
 model doacao {
     id                 String        @id @default(uuid())
-    alimento         String      
+    alimento_nome      String      
     quantidade         Int
     doador_nome        String
     data_doacao        DateTime
@@ -53,20 +75,19 @@ model doacao {
 
 
 
-enum tipo {
+enum tipoENUM {
   ONG
   ESCOLA
   HOSPITAL
   PJ
   PF
   OUTRO
-
 } 
 
 model receptor{
   id                       String              @id @default(uuid())
   nome                     String
-  tipo                     tipo
+  tipo                     tipoENUM
   endereco                 String
   contato                  String
   capacidade_recebimento   Int
@@ -74,15 +95,17 @@ model receptor{
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt 
 }
-//documento(cnpj/cpf) alimentos vai receber de alimento
-model distribuidor {
-id              String              @id @default(uuid())
-nome            String   
-contato         String
-documento       String
-alimentos       String
-regiao_atuacao  String
-criado_em       DateTime           @default(now())
-Atualizado_em   DateTime           @updatedAt 
+
+enum tipagemENUM {
+  IMPORTANTE
+  URGENTE
 }
-//documento(cnpj/cpf) alimentos vai receber de alimento
+
+model notificacoes {
+  id                     String   @id @default(uuid()) 
+  categoria              tipagemENUM
+  mensagem               String
+  destinatario           String
+  lida                   Boolean
+  criado_em              DateTime @default(now())
+}

@@ -7,8 +7,6 @@ import{
 } from "../service/Alimento.service.js";
 //depois colocar logs
 
-//import { categoriaENUM } from "@prisma/client";
-
 class AlimentoController{
 
     //controller do read
@@ -43,33 +41,28 @@ class AlimentoController{
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
 
-        //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
+       try{
+            const alimentoCre = await createAlimento({
+                nome,          
+                descricao,
+                peso,
+                validade,
+                categoria,
+                estado,
+                imagem_url,
             });
-        }
 
-        const alimentoCre = await createAlimento({
-            nome,          
-            descricao,
-            peso,
-            validade,
-            categoriaEncontrada,
-            estado,
-            imagem_url,
-        });
-
-        res.status(201).json({
-            message:"Alimento criado!", alimentoCre
-        });
+            res.status(201).json({
+                message:"Alimento criado!", alimentoCre
+            });
+       }catch(error){
+            res.status(500).json({ message:"Erro ao cadastrar alimento", error:error.message });
+       }
 
     } 
+
+
 
     //DELETE
     async deleteAlimentoController(req,res){
@@ -91,7 +84,7 @@ class AlimentoController{
 
 
     //UPDATE (delete+create)
-     async updateAlimentoControlller(){
+     async updateAlimentoControlller(req, res){
         //parametro da requisicao
         const {id} = req.params; 
         //corpo da requisicao
@@ -118,39 +111,30 @@ class AlimentoController{
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
 
-        //nao entendi
-        const categoriaEncontrada = Object.keys(categoriaENUM).find(
-            (key) => categoriaENUM[key] === categoria
-        );
-
-        //se não existe
-        if(typeof categoriaEncontrada === "Undefined"){
-            return res.status(400).json({
-                message:"Não existe essa categoria",
+        try{
+            const alimentoUp = await updateAlimento(id,{
+                nome,          
+                descricao,
+                peso,
+                validade,
+                categoria,
+                estado,
+                imagem_url,
             });
-        }
 
-        const alimentoUp = await updateAlimento(id,{
-            nome,          
-            descricao,
-            peso,
-            validade,
-            categoriaEncontrada,
-            estado,
-            imagem_url,
-        });
-        if(!alimentoUp)return res.status(404).json({
-            message:"Alimento não enconstrado"
+            if(!alimentoUp)return res.status(404).json({
+            message:"Alimento não encontrado"
             });
         
-        res.status(200).json({
-            message:"Alimento Atualizado!", Alimento:alimentoUp
-        });
+            res.status(200).json({
+                message:"Alimento Atualizado!", Alimento:alimentoUp
+            });
+
+        }catch(error){
+            res.status(500).json({ message:"Erro ao atualizar alimento", error:error.message });
+        }
 
      }
-
-
-
 
 
 }

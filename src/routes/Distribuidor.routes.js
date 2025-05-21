@@ -1,4 +1,5 @@
 import { Router } from "express";
+//classe controller
 import DistribuidorController from "../controller/Distribuidor.controller.js";
 
 const DistribuidorRoutes = Router();
@@ -108,4 +109,5 @@ DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuido
  */
 DistribuidorRoutes.delete("/deletar/:id",DistribuidorController.deletedistribuidorController);
 
-export default DistribuidorRoutes;
+
+export default distribuidorRoutes;

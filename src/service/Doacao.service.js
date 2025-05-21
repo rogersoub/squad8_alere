@@ -10,9 +10,9 @@ export async function getDoacao() {
 
 // CREATE
 export async function createDoacao(db){
-    const creayed = await prisma.alimento.create({
+    const created = await prisma.doacao.create({
         data: {
-            alimento: db.alimento,
+            alimento_nome: db.alimento_nome,
             quantidade: db.quantidade,
             doador_nome: db.doador_nome,
             data_doacao: db.data_doacao,
@@ -38,7 +38,7 @@ export async function deleteDoacao(id){
     const update = await prisma.doacao.update({
         where: {id},
         data: {
-            alimento: db.alimento,
+            alimento_nome: db.alimento_nome,
             quantidade: db.quantidade,
             doador_nome: db.doador_nome,
             data_doacao: db.data_doacao,
