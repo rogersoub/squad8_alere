@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url      = env ("BACKEND_URL")
+  url      = env("BACKEND_URL")
 }
 
 
