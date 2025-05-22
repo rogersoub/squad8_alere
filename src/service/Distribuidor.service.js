@@ -5,7 +5,13 @@ const prisma =  new PrismaClient();
 //READ
 export async function getDistribuidor(){
     const rows = await prisma.distribuidor.findMany({
-        include: {alimentos:true}//qualquer coisa, apagar antes da chave azul
+        include: {agendamento_p: true, 
+            alimentoDistribuidor: {
+                include:{
+                    alimento:true
+                }
+            }
+        }//qualquer coisa, apagar antes da chave azul
     });
     return rows;
 }

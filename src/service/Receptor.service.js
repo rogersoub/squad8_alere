@@ -4,7 +4,17 @@ const prisma = new PrismaClient();
 
 //READ 
 export async function getReceptor() {
-    const rows = await prisma.receptor .findMany();
+    const rows = await prisma.receptor .findMany({
+        include: {
+            agendamento_p: {
+                include: {
+                    alimentos: true,
+                    distribuidores: true,
+                    noticacoes_p: true
+                }
+            }
+        }
+    });
     return rows;
 }
 
