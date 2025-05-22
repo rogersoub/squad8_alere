@@ -1,7 +1,10 @@
 import app from "./app.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 
-app.listen(PORT, async ()=>{
-    console.log(`Rodando na porta http://localhost:${PORT}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, async () => {
+    console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
-

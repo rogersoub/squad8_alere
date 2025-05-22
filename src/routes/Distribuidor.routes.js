@@ -1,9 +1,10 @@
 import { Router } from "express";
-//classe controller
+// classe controller
 import DistribuidorController from "../controller/Distribuidor.controller.js";
 
-const DistribuidorRoutes = Router();
-//READ das rotas
+const distribuidorRoutes = Router();
+
+// READ das rotas
 /**
  * @swagger
  * /Distribuidor:
@@ -15,9 +16,9 @@ const DistribuidorRoutes = Router();
  *       200:
  *         description: Lista todos os distribuidores cadastrados
  */
-DistribuidorRoutes.get("/",DistribuidorController.getdistribuidorController);
+distribuidorRoutes.get("/", DistribuidorController.getDistribuidorController);
 
-//CREATE das rotas
+// CREATE das rotas
 /**
  * @swagger
  * /Distribuidor/cadastro:
@@ -29,9 +30,9 @@ DistribuidorRoutes.get("/",DistribuidorController.getdistribuidorController);
  *       200:
  *         description: Cadastra um novo distribuidor
  */
-DistribuidorRoutes.post("/cadastro",DistribuidorController.createdistribuidorController);
+distribuidorRoutes.post("/cadastro", DistribuidorController.createDistribuidorController);
 
-//UPDATE das rotas
+// UPDATE das rotas
 /**
  * @swagger
  * /Distribuidor/atualizar/:id:
@@ -84,9 +85,9 @@ DistribuidorRoutes.post("/cadastro",DistribuidorController.createdistribuidorCon
  *       404:
  *         description: Distribuidor não encontrado
  */
-DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuidorControlller);
+distribuidorRoutes.put("/atualizar/:id", DistribuidorController.updateDistribuidorController);
 
-//DELETE das rotas
+// DELETE das rotas
 /**
  * @swagger
  * /Distribuidor/deletar/:id:
@@ -107,7 +108,6 @@ DistribuidorRoutes.put("/atualizar/:id",DistribuidorController.updatedistribuido
  *       404:
  *         description: Distribuidor não encontrado
  */
-DistribuidorRoutes.delete("/deletar/:id",DistribuidorController.deletedistribuidorController);
-
+distribuidorRoutes.delete("/deletar/:id", DistribuidorController.deleteDistribuidorController);
 
 export default distribuidorRoutes;

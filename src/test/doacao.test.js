@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app.js').default; // Importa o app corretamente
 
-describe("Testes da rota /doacao", () => {
+describe("Testes da rota /estatistica", () => {
   test("GET /doacao/", async () => {
     const res = await request(app).get("/doacao/");
     expect(res.statusCode).toBe(200);
@@ -11,8 +11,8 @@ describe("Testes da rota /doacao", () => {
     const res = await request(app)
       .post("/doacao/cadastro")
       .send({
-        alimento_nome: "Banana", 
-        quantidade: 10, 
+        alimento_nome: "Maçã", 
+        quantidade: 100, 
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",
@@ -26,8 +26,8 @@ describe("Testes da rota /doacao", () => {
     const res = await request(app)
       .put(`/doacao/atualizar/${id}`)
       .send({
-        alimento_nome: "Banana", 
-        quantidade: 10, 
+        alimento_nome: "Maçã", 
+        quantidade: 100, 
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",

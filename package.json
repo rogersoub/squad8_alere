@@ -2,32 +2,40 @@
   "name": "projetofinal_alere",
   "version": "1.0.0",
   "description": "* clone e commit em Scripts/Rotina\r * branch em Ramificação",
-  "main": "server.js",
+  "main": "src/server.js",
   "type": "module",
+  "jest": {
+    "transform":{}
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devN": "nodemon src/server.js",
     "start": "node src/server.js",
     "prisma:migrate": "prisma migrate dev --schema=src/prisma/schema.prisma",
     "prisma:generate": "prisma generate --schema=src/prisma/schema.prisma",
-    "prisma:studio": "prisma studio --schema=src/prisma/schema.prisma"
+    "prisma:studio": "prisma studio --schema=src/prisma/schema.prisma",
+    "testes": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^6.8.1",
+    "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "nodemon": "^3.1.10",
-    "prisma": "^6.8.1",
+    "prisma": "^6.8.2",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.1"
   }
 }

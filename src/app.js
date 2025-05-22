@@ -1,3 +1,4 @@
+//vem express env e cors
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -7,11 +8,9 @@ dotenv.config();
 const app = express();
 
 
-
-import { swaggerUi, swaggerSpec } from './swagger.js';//USANDO API JSON
 const cors_config ={origin: '*' };
 
-
+//USANDO API JSON
 app.use(express.json());
 app.use(cors(cors_config));
 
@@ -25,7 +24,6 @@ import notificacoesRoutes from "./routes/Notificacoes.routes.js";
 import receptorRoutes from "./routes/Receptores.routes.js";
 
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //USANDO ROTAS e definindo a inicial
 app.use("/alimento",alimentoRoutes);
 app.use("/distribuidor",distribuidorRoutes);
@@ -33,3 +31,4 @@ app.use("/doacao",doacaoRoutes);
 app.use("/estatisca",estatisticaRoutes);
 app.use("/receptor",receptorRoutes);
 app.use("/notificacoes",notificacoesRoutes);
+export default app;

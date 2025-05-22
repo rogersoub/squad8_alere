@@ -1,5 +1,7 @@
-const request = require('supertest');
-const app = require('../app.js').default; // Importa o app corretamente
+//const request = require('supertest');
+//const app = require('../app.js').default; // Importa o app corretamente
+import request from 'supertest';
+import app from '../app.js';
 
 describe("Testes da rota /estatistica", () => {
   test("GET /estatistica/", async () => {
@@ -11,7 +13,7 @@ describe("Testes da rota /estatistica", () => {
     const res = await request(app)
       .post("/estatistica/cadastro")
       .send({
-        mais_desperdicados: "Banana, Maçã",
+        mais_desperdicados: "Maçã",
         total_alimentos: 100,
         total_doacoes: 50,
         total_recebidos: 30,

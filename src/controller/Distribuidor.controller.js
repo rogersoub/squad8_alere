@@ -1,129 +1,81 @@
-//servicos
-import{
+// serviços
+import {
     getDistribuidor,
     createDistribuidor,
     deleteDistribuidor,
     updateDistribuidor,
 } from "../service/Distribuidor.service.js";
-//depois colocar logs
 
-class DistribuidorController{
+class DistribuidorController {
 
-    //controller do read
-    async getDistribuidorController(req,res){
-        const distribuidorController = await getDistribuidor();
-
-        res.status(200).json({message:"Todos os distribuidores: ", distribuidorController});
+    // Controller do read
+    static async getDistribuidorController(req, res) {
+        const distribuidor = await getDistribuidor();
+        res.status(200).json({ message: "Todos os distribuidores: ", distribuidor });
     }
 
-    //controller do create
-    async createDistribuidorController(req, res){
-        //corpo da requisicao
-        const{
-            nome,          
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-        } = req.body 
+    // Controller do create
+    static async createDistribuidorController(req, res) {
+        const { nome, contato, documento, alimentos, regiao_atuacao } = req.body;
 
-        //validando se tem
-        if(
-            !nome ||           
-            !contato ||
-            !documento ||
-            !alimentos ||
-            !regiao_atuacao 
-        ){
-            res.status(400).json({message:"Adicione todos dados corretamente",});
+        if (!nome || !contato || !documento || !alimentos || !regiao_atuacao) {
+            return res.status(400).json({ message: "Adicione todos dados corretamente" });
         }
 
-        try{
+        try {
             const distribuidorCre = await createDistribuidor({
-                nome,           
-                contato,
-                documento,
-                alimentos,
-                regiao_atuacao,
+                nome, contato, documento, alimentos, regiao_atuacao
             });
 
             res.status(201).json({
-                message:"distribuidor criado!", distribuidorCre
+                message: "Distribuidor criado!", distribuidorCre
             });
-        }catch(error){
-            res.status(500).json({ message:"Erro ao cadastrar alimento", error:error.message });
+        } catch (error) {
+            res.status(500).json({ message: "Erro ao cadastrar distribuidor", error: error.message });
         }
-
-
-
-    } 
-
-    //DELETE
-    async deleteDistribuidorController(req,res){
-        //parametro da requisicao
-        const {id} = req.params; 
-
-        const distribuidorDel =  await deleteDistribuidor(id);
-
-        if(!distribuidorDel) return res.status(404).json({
-            message:"Distribuidor não enconstrado"
-        });
-
-        res.status(200).json({
-            message:"distribuidor deletado!",
-            distribuidoroDeletado: distribuidorDel
-        });
-
     }
 
+    // DELETE
+    static async deleteDistribuidorController(req, res) {
+        const { id } = req.params;
 
-    //UPDATE (delete+create)
-     async updateDistribuidorControlller(){
-        //parametro da requisicao
-        const {id} = req.params; 
-        //corpo da requisicao
-        const{
-            nome,           
-            contato,
-            documento,
-            alimentos,
-            regiao_atuacao,
-        } = req.body 
+        const distribuidorDel = await deleteDistribuidor(id);
 
-        //validando se tem
-        if(
-            !nome ||           
-            !contato ||
-            !documento ||
-            !alimentos ||
-            !regiao_atuacao
-        ){
-            res.status(400).json({message:"Adicione todos dados corretamente",});
+        if (!distribuidorDel) {
+            return res.status(404).json({ message: "Distribuidor não encontrado" });
         }
 
-        try{
-            const distribuidorUp = await updateDistribuidor(id,{
-                nome,           
-                contato,
-                documento,
-                alimentos,
-                regiao_atuacao,
+        res.status(200).json({
+            message: "Distribuidor deletado!",
+            distribuidorDeletado: distribuidorDel
+        });
+    }
+
+    // UPDATE
+    static async updateDistribuidorController(req, res) {
+        const { id } = req.params;
+        const { nome, contato, documento, alimentos, regiao_atuacao } = req.body;
+
+        if (!nome || !contato || !documento || !alimentos || !regiao_atuacao) {
+            return res.status(400).json({ message: "Adicione todos dados corretamente" });
+        }
+
+        try {
+            const distribuidorUp = await updateDistribuidor(id, {
+                nome, contato, documento, alimentos, regiao_atuacao
             });
-            if(!distribuidorUp)return res.status(404).json({
-                message:"distribuidor não enconstrado"
-                });
-        
+
+            if (!distribuidorUp) {
+                return res.status(404).json({ message: "Distribuidor não encontrado" });
+            }
+
             res.status(200).json({
-                message:"distribuidor Atualizado!",  updateDistribuidor:distribuidorUp
+                message: "Distribuidor atualizado!", distribuidorAtualizado: distribuidorUp
             });
-        }catch(error){
-            res.status(500).json({ message:"Erro ao atualizar alimento", error:error.message });
+        } catch (error) {
+            res.status(500).json({ message: "Erro ao atualizar distribuidor", error: error.message });
         }
-
-
-     }
-
-
+    }
 }
 
-export default new  DistribuidorController();
+export default DistribuidorController;
