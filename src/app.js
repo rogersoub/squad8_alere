@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 // CORS configurado
-const cors_config = { origin: '*' };
+const cors_config = { origin: 'http://localhost:3000' };
 
 // Middlewares
 app.use(logger);
