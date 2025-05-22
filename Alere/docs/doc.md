@@ -56,6 +56,14 @@ Objetivo: Registrar famílias receptoras no sistema, incluindo informações com
 
    *Filtro e Busca:* O sistema pode utilizar dados como endereço e tipo para filtrar famílias por localização ou perfil.
 
+***Endpoints:***
+
+| Método    |  Rota                     |  Descrição                           |
+|-----------|---------------------------|--------------------------------------|
+| POST      |  /receptor/cadastro       |  Cadastro de nova família receptora  |
+| PUT       |  /receptor/atualizar/:id  |  Atualiza dados do receptor          |
+| DELETE    |  /receptor/deletar/:id    |  Remove um receptor                  |
+
 
 
  **Cadastro de Pontos de Distribuição (Tabela: distribuidor)**
@@ -65,6 +73,14 @@ Objetivo: Registrar os distribuidores responsáveis por fazer a ponte entre doa�
 *Dados Registrados:* Nome, contato, documento, região de atuação e alimentos vinculados.
 
 *Multiplicidade:* Suporte a múltiplos distribuidores, cada um podendo atuar em diferentes regiões.
+
+***Endpoints:***
+
+| Método   |  Rota                         |  Descrição              |
+|----------|-------------------------------|-------------------------|
+| POST     |	/distribuidor/cadastro	     |  Cadastra distribuidor  |
+| PUT	     |  /distribuidor/atualizar/:id  |	Atualiza distribuidor  |
+| DELETE   |  /distribuidor/deletar/:id	   |  Remove distribuidor    |
 
 
 
@@ -76,6 +92,14 @@ Objetivo: Gerenciar o cadastro de alimentos disponíveis para doação.
 
 *Rastreabilidade:* As datas de criação e atualização dos alimentos ajudam a manter o controle de entrada no sistema.
 
+***Endpoints:***
+
+| Método  |  Rota                         |  Descrição              |
+|---------|-------------------------------|-------------------------|
+| POST	  | /alimento/cadastro	          | Cadastra alimento       |
+| PUT	    | /alimento/atualizar/:id       |	Atualiza alimento       |
+| DELETE	| /alimento/deletar/:id	        | Remove alimento         |
+
 
 
   **Cadastro e Registro de Doações (Tabela: doacao)**
@@ -85,6 +109,13 @@ Objetivo: Registrar doações feitas ao sistema, ligando alimentos a doadores.
 
 *Histórico:* Permite aos doadores acompanharem suas contribuições.
 
+***Endpoints:***
+
+| Método  |  Rota                     |  Descrição          |
+|---------|---------------------------|---------------------|
+| POST    |	/doacao/cadastro          |	Cadastra doação     |
+| PUT	    | /doacao/atualizar/:id	    | Atualiza doação     |
+| DELETE	| /doacao/deletar/:id	      | Remove doação       |
 
 
   **Agendamento de Entregas (Tabela: Agendamento)**
@@ -96,6 +127,13 @@ Objetivo: Gerenciar a logística de entrega entre doadores, distribuidores e fam
 *Campos Adicionais:* Data e hora, status, observações.
 *Rastreamento:* Permite saber quando e como uma entrega foi (ou será) realizada.
 
+***Endpoints:***
+
+| Método  |  Rota                       |  Descrição           |
+|---------|-----------------------------|----------------------|
+| POST    |	/agendamento/cadastro	      | Cadastra agendamento |
+| PUT	    | /agendamento/atualizar/:id  |	Atualiza agendamento |
+| DELETE  |	/agendamento/deletar/:id	  | Remove agendamento   |
 
 
   **Notificações (Tabela: Notificacoes)**
@@ -106,6 +144,13 @@ Objetivo: Enviar mensagens informativas dentro do sistema para os usuários.
 
 *Controle de Leitura:* Indicação se a notificação foi lida ou não.
 
+***Endpoints:***
+
+| Método  |  Rota                        |  Descrição           |
+|---------|------------------------------|----------------------|
+| POST	  | /notificacoes/cadastro	     | Cadastra notificação |
+| PUT	    | /notificacoes/atualizar/:id	 | Atualiza notificação |
+| DELETE	| /notificacoes/deletar/:id	   | Remove notificação   |
 
 
  **Estatísticas e Monitoramento (Tabela: Estatistica)**
@@ -115,3 +160,11 @@ Objetivo: Fornecer dados consolidados para análise e combate ao desperdício.
 *Informações Geradas:* Alimentos mais desperdiçados, totais doados e recebidos, ranking por categoria.
 
 *Apoio à Gestão:* Permite que o sistema visualize padrões e melhore processos de doação.
+
+***Endpoints:***
+
+| Método  |  Rota                        |  Descrição           |
+|---------|------------------------------|----------------------|
+| POST	  | /estatistica/cadastro	       | Cadastra estatística |
+| PUT	    | /estatistica/atualizar/:id	 | Atualiza estatística |
+| DELETE	| /estatistica/deletar/:id	   | Remove estatística   |
