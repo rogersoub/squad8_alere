@@ -57,7 +57,7 @@ mais_desperdicados       String
 total_alimentos          Int
 total_doacoes            Int
 total_recebidos          Int
-ranking_categoria        Json
+ranking_categoria        String
 criado_em                DateTime            @default(now())
 atualizado_em            DateTime            @updatedAt
 }
@@ -114,7 +114,7 @@ model agendamento {
   id                       String              @id @default(uuid())
   data_hora                DateTime
   status                   statusENUM
-  observacoes              Int
+  observacoes              String
   alimento_nome            String
   distribuidor_nome        String
   receptor_nome            String

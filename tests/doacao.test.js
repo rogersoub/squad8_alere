@@ -1,6 +1,8 @@
-const request = require('supertest');
-const app = require('../app.js').default; // Importa o app corretamente
+// tests/alimento.test.js
+import request from 'supertest';
+import app from '../src/app.js';
 
+let id;
 describe("Testes da rota /estatistica", () => {
   test("GET /doacao/", async () => {
     const res = await request(app).get("/doacao/");
@@ -16,13 +18,13 @@ describe("Testes da rota /estatistica", () => {
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",
-        validado: true,
+        validado: false,
       });
     expect(res.statusCode).toBe(201);
+    id = res.body.id; // armazena o ID retornado
   });
 
   test("PUT /doacao/atualizar/:id", async () => {
-    const id = "b8baa551-eba1-4bef-923c-47db13cec93f"; // Altere para um ID real se necessário
     const res = await request(app)
       .put(`/doacao/atualizar/${id}`)
       .send({
@@ -31,13 +33,12 @@ describe("Testes da rota /estatistica", () => {
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",
-        validado: true,
+        validado: false,
       });
     expect(res.statusCode).toBe(200);
   });
 
   test("DELETE /doacao/deletar/:id", async () => {
-    const id = "b8baa551-eba1-4bef-923c-47db13cec93f"; // Altere para um ID real se necessário
     const res = await request(app).delete(`/doacao/deletar/${id}`);
     expect(res.statusCode).toBe(200);
   });

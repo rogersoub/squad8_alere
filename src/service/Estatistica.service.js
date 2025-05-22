@@ -14,7 +14,7 @@ export async function createEstatistica(db) {
         data: {
             mais_desperdicados: db.mais_desperdicados,
             total_alimentos: db.total_alimentos,
-            total_doacoes: db.total_doaçoes,
+            total_doacoes: db.total_doacoes,
             total_recebidos: db.total_recebidos,
             ranking_categoria: db.ranking_categoria,
     }});
@@ -38,7 +38,7 @@ export async function updateEstatistica(id, db) {
         data: {
             mais_desperdicados: db.mais_desperdicados,
             total_alimentos: db.total_alimentos,
-            total_doacoes: db.total_doaçoes,
+            total_doacoes: db.total_doacoes,
             total_recebidos: db.total_recebidos,
             ranking_categoria: db.ranking_categoria,
         },

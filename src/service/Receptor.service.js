@@ -16,8 +16,8 @@ export async function createReceptor(db) {
             tipo: db.tipo,
             endereco: db.endereco,
             contato: db.contato,
-            capacidade_recebimente: db.capacidade,
-            alimentos_recebidos: db.alimentos,
+            capacidade_recebimento: db.capacidade_recebimento,
+            alimentos_recebidos: db.alimentos_recebidos
         }
     });
     return created;
@@ -46,8 +46,8 @@ export async function uptadeReceptor(id, db){
             tipo: db.tipo,
             endereco: db.endereco,
             contato: db.contato,
-            capacidade_recebimente: db.capacidade,
-            alimentos_recebidos: db.alimentos,
+            capacidade_recebimento: db.capacidade_recebimento,
+            alimentos_recebidos: db.alimentos_recebidos
         },
     });
     return uptade;

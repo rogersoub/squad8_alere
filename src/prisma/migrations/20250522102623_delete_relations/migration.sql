@@ -18,23 +18,10 @@ CREATE TABLE "distribuidor" (
     "nome" TEXT NOT NULL,
     "contato" TEXT NOT NULL,
     "documento" TEXT NOT NULL,
+    "alimentos" TEXT NOT NULL,
     "regiao_atuacao" TEXT NOT NULL,
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "atualizado_em" DATETIME NOT NULL,
-    "alimentoId" TEXT NOT NULL,
-    CONSTRAINT "distribuidor_alimentoId_fkey" FOREIGN KEY ("alimentoId") REFERENCES "alimento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "alimentoDistribuidor" (
-    "alimentoId" TEXT NOT NULL,
-    "distribuidorId" TEXT NOT NULL,
-    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "atualizado_em" DATETIME NOT NULL,
-
-    PRIMARY KEY ("alimentoId", "distribuidorId"),
-    CONSTRAINT "alimentoDistribuidor_alimentoId_fkey" FOREIGN KEY ("alimentoId") REFERENCES "alimento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "alimentoDistribuidor_distribuidorId_fkey" FOREIGN KEY ("distribuidorId") REFERENCES "distribuidor" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "atualizado_em" DATETIME NOT NULL
 );
 
 -- CreateTable
@@ -44,7 +31,7 @@ CREATE TABLE "estatistica" (
     "total_alimentos" INTEGER NOT NULL,
     "total_doacoes" INTEGER NOT NULL,
     "total_recebidos" INTEGER NOT NULL,
-    "ranking_categoria" JSONB NOT NULL,
+    "ranking_categoria" TEXT NOT NULL,
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "atualizado_em" DATETIME NOT NULL
 );
@@ -59,9 +46,7 @@ CREATE TABLE "doacao" (
     "localizacao" TEXT NOT NULL,
     "validado" BOOLEAN NOT NULL DEFAULT false,
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "atualizado_em" DATETIME NOT NULL,
-    "alimentoId" TEXT NOT NULL,
-    CONSTRAINT "doacao_alimentoId_fkey" FOREIGN KEY ("alimentoId") REFERENCES "alimento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "atualizado_em" DATETIME NOT NULL
 );
 
 -- CreateTable
@@ -82,15 +67,12 @@ CREATE TABLE "agendamento" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "data_hora" DATETIME NOT NULL,
     "status" TEXT NOT NULL,
-    "observacoes" INTEGER NOT NULL,
+    "observacoes" TEXT NOT NULL,
+    "alimento_nome" TEXT NOT NULL,
+    "distribuidor_nome" TEXT NOT NULL,
+    "receptor_nome" TEXT NOT NULL,
     "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "atualizado_em" DATETIME NOT NULL,
-    "alimentoId" TEXT NOT NULL,
-    "distribuidorId" TEXT NOT NULL,
-    "receptorId" TEXT NOT NULL,
-    CONSTRAINT "agendamento_alimentoId_fkey" FOREIGN KEY ("alimentoId") REFERENCES "alimento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "agendamento_distribuidorId_fkey" FOREIGN KEY ("distribuidorId") REFERENCES "distribuidor" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "agendamento_receptorId_fkey" FOREIGN KEY ("receptorId") REFERENCES "receptor" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "atualizado_em" DATETIME NOT NULL
 );
 
 -- CreateTable
@@ -98,9 +80,7 @@ CREATE TABLE "notificacoes" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "categoria" TEXT NOT NULL,
     "mensagem" TEXT NOT NULL,
-    "destinatario" TEXT NOT NULL,
+    "receptor" TEXT NOT NULL,
     "lida" BOOLEAN NOT NULL,
-    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "agendamentoId" TEXT NOT NULL,
-    CONSTRAINT "notificacoes_agendamentoId_fkey" FOREIGN KEY ("agendamentoId") REFERENCES "agendamento" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "criado_em" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

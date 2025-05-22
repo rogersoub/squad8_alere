@@ -1,9 +1,13 @@
-//const request = require('supertest');
-//const app = require('../app.js').default; // Importa o app corretamente
+// tests/alimento.test.js
 import request from 'supertest';
-import app from '../app.js';
+import app from '../src/app.js';
+
+
 
 describe("Testes da rota /estatistica", () => {
+let id;
+
+
   test("GET /estatistica/", async () => {
     const res = await request(app).get("/estatistica/");
     expect(res.statusCode).toBe(200);
@@ -19,11 +23,13 @@ describe("Testes da rota /estatistica", () => {
         total_recebidos: 30,
         ranking_categoria: "Frutas",
       });
+       console.log("Resposta do POST:", res.body);
+
     expect(res.statusCode).toBe(201);
+    id = res.body.id; // armazena o ID retornado
   });
 
   test("PUT /estatistica/atualizar/:id", async () => {
-    const id = "b8baa551-eba1-4bef-923c-47db13cec93f"; // Altere para um ID real se necessário
     const res = await request(app)
       .put(`/estatistica/atualizar/${id}`)
       .send({
@@ -37,7 +43,6 @@ describe("Testes da rota /estatistica", () => {
   });
 
   test("DELETE /estatistica/deletar/:id", async () => {
-    const id = "b8baa551-eba1-4bef-923c-47db13cec93f"; // Altere para um ID real se necessário
     const res = await request(app).delete(`/estatistica/deletar/${id}`);
     expect(res.statusCode).toBe(200);
   });

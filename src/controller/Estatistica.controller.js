@@ -36,15 +36,22 @@ class EstatisticaController {
             return res.status(400).json({ message: "Preencha todos os campos obrigatórios!" });
         }
 
-        const estatisticaCre = await createEstatistica({
-            mais_desperdicados,
-            total_alimentos,
-            total_doacoes,
-            total_recebidos,
-            ranking_categoria,
-        });
+        try{
+            const estatisticaCre = await createEstatistica({
+                mais_desperdicados,
+                total_alimentos,
+                total_doacoes,
+                total_recebidos,
+                ranking_categoria,
+            });
 
-        res.status(201).json({ message: "Estatistica criada com sucesso!", estatisticaCre });
+            res.status(201).json({ message: "Estatistica criada com sucesso!", estatisticaCre });
+            
+        }catch(error){
+            res.status(500).json({ message:"Erro ao cadastrar alimento", error:error.message });
+        }
+
+
 
     }
 

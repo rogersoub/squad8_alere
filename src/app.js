@@ -33,7 +33,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/alimento", alimentoRoutes);
 app.use("/distribuidor", distribuidorRoutes);
 app.use("/doacao", doacaoRoutes);
-app.use("/estatisca", estatisticaRoutes);
+app.use("/estatistica", estatisticaRoutes);
 app.use("/receptor", receptorRoutes);
 app.use("/notificacoes", notificacoesRoutes);
 app.use("/agendamento", agendamentoRoutes);

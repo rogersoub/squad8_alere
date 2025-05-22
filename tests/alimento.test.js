@@ -2,9 +2,48 @@
 import request from 'supertest';
 import app from '../src/app.js';
 
-describe('Testes para alimentos', () => {
-  it('Deve retornar status 200 e um array de alimentos', async () => {
-    const res = await request(app).get('/alimento');
+let id;
+describe("Testes da rota /alimento", () => {
+  it("GET /alimento/", async () => {
+    const res = await request(app).get("/alimento/");
+    expect(res.statusCode).toBe(200);
+  });
+
+  it("POST /alimento/cadastro", async () => {
+    const res = await request(app)
+      .post("/alimento/cadastro")
+      .send({
+        nome: "Banana",
+        descricao: "Alimento de teste",
+        peso: 10,
+        validade: "2025-12-31",
+        categoria: "FRUTA",
+        estado: 1,
+        imagem_url: "http://imagem.com/"
+      });
+    expect(res.statusCode).toBe(201);
+     // salva o id retornado
+    id = res.body.id;
+    expect(id).toBeDefined(); // opcional: garante que o id veio
+  });
+
+  it("PUT /alimento/atualizar/:id", async () => {
+    const res = await request(app)
+      .put(`/alimento/atualizar/${id}`)
+      .send({
+        nome: "Banana Atualiza",
+        descricao: "Alimento de teste",
+        peso: 10,
+        validade: "2025-12-01",
+        categoria: "FRUTA",
+        estado: 1,
+        imagem_url: "http://imagem.com/new"
+      });
+    expect(res.statusCode).toBe(200);
+  });
+
+  it("DELETE /alimento/deletar/:id", async () => {
+    const res = await request(app).delete(`/alimento/deletar/${id}`);
     expect(res.statusCode).toBe(200);
   });
 });
