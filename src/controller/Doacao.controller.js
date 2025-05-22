@@ -26,6 +26,7 @@ class DoacaoController{
             data_doacao, 
             localizacao,
             validado,
+            alimentoId,
         } = req.body
         
         //validando se tem
@@ -35,7 +36,8 @@ class DoacaoController{
             !doador_nome || 
             !data_doacao || 
             !localizacao || 
-            !validado  
+            !validado ||
+            !alimentoId 
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         }    
@@ -46,7 +48,8 @@ class DoacaoController{
             doador_nome,
             data_doacao, 
             localizacao,
-            validado, 
+            validado,
+            alimentoId, 
     });
 
     res.status(201).json({message:"Doação criada com sucesso!", doacaoCre});
@@ -64,6 +67,7 @@ class DoacaoController{
             data_doacao, 
             localizacao,
             validado, 
+            alimentoId,
         } = req.body;
 
         if(
@@ -72,7 +76,8 @@ class DoacaoController{
             !doador_nome || 
             !data_doacao || 
             !localizacao || 
-            !validado 
+            !validado ||
+            !alimentoId
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         }    
@@ -83,7 +88,8 @@ class DoacaoController{
             doador_nome,
             data_doacao, 
             localizacao,
-            validado, 
+            validado,
+            alimentoId, 
     });
 }
 

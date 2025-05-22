@@ -11,9 +11,9 @@ class DistribuidorController{
 
     //controller do read
     async getDistribuidorController(req,res){
-        const distribuidorController = await getDistribuidor();
+        const distribuidorControllerget = await getDistribuidor();
 
-        res.status(200).json({message:"Todos os distribuidores: ", distribuidorController});
+        res.status(200).json({message:"Todos os distribuidores: ", distribuidorControllerget});
     }
 
     //controller do create
@@ -23,17 +23,17 @@ class DistribuidorController{
             nome,          
             contato,
             documento,
-            alimentos,
             regiao_atuacao,
+            alimentoId,
         } = req.body 
 
         //validando se tem
         if(
             !nome ||           
             !contato ||
-            !documento ||
-            !alimentos ||
-            !regiao_atuacao 
+            !documento || 
+            !regiao_atuacao ||
+            ! alimentoId
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
@@ -45,6 +45,7 @@ class DistribuidorController{
                 documento,
                 alimentos,
                 regiao_atuacao,
+                alimentoId,
             });
 
             res.status(201).json({
@@ -88,6 +89,7 @@ class DistribuidorController{
             documento,
             alimentos,
             regiao_atuacao,
+            alimentoId,
         } = req.body 
 
         //validando se tem
@@ -96,7 +98,8 @@ class DistribuidorController{
             !contato ||
             !documento ||
             !alimentos ||
-            !regiao_atuacao
+            !regiao_atuacao ||
+            !alimentoId
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
@@ -108,6 +111,7 @@ class DistribuidorController{
                 documento,
                 alimentos,
                 regiao_atuacao,
+                alimentoId,
             });
             if(!distribuidorUp)return res.status(404).json({
                 message:"distribuidor não enconstrado"

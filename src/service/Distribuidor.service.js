@@ -4,7 +4,9 @@ const prisma =  new PrismaClient();
 
 //READ
 export async function getDistribuidor(){
-    const rows = await prisma.distribuidor.findMany();
+    const rows = await prisma.distribuidor.findMany({
+        include: {alimentos:true}//qualquer coisa, apagar antes da chave azul
+    });
     return rows;
 }
 
@@ -15,8 +17,8 @@ export async function createDistribuidor(db){
             nome: db.nome,                       
             contato: db.contato,
             documento: db.documento,
-            alimentos: db.alimentos,
             regiao_atuacao: db.regiao_atuacao,
+            alimentoId: db.alimentoId,
         },
     });
     return created;
@@ -42,7 +44,8 @@ export async function updateDistribuidor(id, db){
             contato: db.contato,
             documento: db.documento,
             alimentos: db.alimentos,
-            regiao_atuacao: db.regiao_atuacao,  
+            regiao_atuacao: db.regiao_atuacao,
+            alimentoId: db.alimentoId,  
         },
     });
     return update;

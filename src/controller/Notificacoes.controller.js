@@ -24,6 +24,7 @@ class NotificacoesController{
             mensagem, 
             destinatario, 
             lida, 
+            agendamentoId,
         } = req.body
         
         //validando se tem
@@ -31,7 +32,8 @@ class NotificacoesController{
             !categoria || 
             !mensagem || 
             !destinatario || 
-            !lida
+            !lida ||
+            !agendamentoId 
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         } 
@@ -41,6 +43,7 @@ class NotificacoesController{
             mensagem, 
             destinatario, 
             lida,
+            agendamentoId ,
         }); 
 
     res.status(201).json({message:"Notificação criada com sucesso!", NotificacoesCre});
@@ -56,13 +59,15 @@ class NotificacoesController{
             mensagem, 
             destinatario, 
             lida,  
+            agendamentoId,
         } = req.body;
 
         if(
             !categoria || 
             !mensagem || 
             !destinatario || 
-            !lida
+            !lida ||
+            !agendamentoId 
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         }   
@@ -72,6 +77,7 @@ class NotificacoesController{
                 mensagem, 
                 destinatario, 
                 lida,  
+                agendamentoId,
             });
 
             if(!NotificacoesUp)return res.status(404).json({

@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url      = env ("BACKEND_URL")
+  url      = env("BACKEND_URL")
 }
 
 
@@ -19,69 +19,97 @@ enum categoriaENUM {
 }
 
 model alimento {
-id              String            @id @default(uuid())
-nome            String 
-descricao       String
-peso            Int 
-validade        String
-categoria       categoriaENUM
-estado          Int
-imagem_url      String
-criado_em       DateTime           @default(now())
-Atualizado_em   DateTime           @updatedAt 
-
+  id                          String            @id @default(uuid())
+  nome                        String 
+  descricao                   String
+  peso                        Int 
+  validade                    String
+  categoria                   categoriaENUM
+  estado                      Int
+  imagem_url                  String
+  criado_em                   DateTime           @default(now())
+  atualizado_em               DateTime           @updatedAt 
+  distribuidor_p              distribuidor[]
+  doacoes_p                   doacao[]
+  agendamento_p               agendamento[]
+  alimentoDistribuidor_p      alimentoDistribuidor[]
 //doacao          doacao[]
 }
+//[] são o ponto de partida da relacao
 
 
 //documento(cnpj/cpf) alimentos vai receber de alimento
 model distribuidor {
-id              String              @id @default(uuid())
-nome            String   
-contato         String
-documento       String
-alimentos       String
-regiao_atuacao  String
-criado_em       DateTime           @default(now())
-Atualizado_em   DateTime           @updatedAt 
+  id                      String             @id @default(uuid())
+  nome                    String   
+  contato                 String
+  documento               String
+  regiao_atuacao          String
+  criado_em               DateTime           @default(now())
+  atualizado_em           DateTime           @updatedAt 
+  alimentoId              String
+  agendamento_p           agendamento[]
+  alimentoDistribuidor    alimentoDistribuidor[]
+
+  alimentos       alimento           @relation(fields: [alimentoId], references: [id])
+}
+//referencia da tabela alimento
+
+//TABELA INTERMEDIÁRIA
+model alimentoDistribuidor {
+  alimentoId      String
+  distribuidorId  String
+  criado_em       DateTime             @default(now())
+  atualizado_em   DateTime             @updatedAt 
+
+  alimento        alimento             @relation(fields: [alimentoId], references: [id])
+  distribuidor    distribuidor         @relation(fields: [distribuidorId], references: [id])
+
+  @@id([alimentoId, distribuidorId])
 }
 
 
+
+
+//TABELA ESTATISTICA
 model estatistica {
-  id                       String              @id @default(uuid())
-  mais_desperdicados       String
-  total_alimentos          Int
-  total_doacoes            Int
-  total_recebidos          Int
-  ranking_categoria        Json
-  criado_em                DateTime             @default(now())
-  atualizado_em            DateTime             @updatedAt
+id                       String              @id @default(uuid())
+mais_desperdicados       String
+total_alimentos          Int
+total_doacoes            Int
+total_recebidos          Int
+ranking_categoria        Json
+criado_em                DateTime            @default(now())
+atualizado_em            DateTime            @updatedAt
 }
 
-
+//TABELA DOACAO
 model doacao {
-    id                 String        @id @default(uuid())
-    alimento_nome      String      
-    quantidade         Int
-    doador_nome        String
-    data_doacao        DateTime
-    localizacao        String
-    validado           Boolean       @default(false)
-    criado_em          DateTime      @default(now())
-    atualizado_em      DateTime      @updatedAt
+  id                 String        @id @default(uuid())
+  alimento_nome      String      
+  quantidade         Int
+  doador_nome        String
+  data_doacao        DateTime
+  localizacao        String
+  validado           Boolean       @default(false)
+  criado_em          DateTime      @default(now())
+  atualizado_em      DateTime      @updatedAt
+  alimentoId         String
 
-   // alimento           alimento       @relation(fields:  [alimentoId], references: [id])
+  alimentos           alimento      @relation(fields:  [alimentoId], references: [id])
 }
+//referencia de alimento
 
 
 
+//TABELA RECEPTOR
 enum tipoENUM {
-  ONG
-  ESCOLA
-  HOSPITAL
-  PJ
-  PF
-  OUTRO
+ONG
+ESCOLA
+HOSPITAL
+PJ
+PF
+OUTRO
 } 
 
 model receptor{
@@ -93,19 +121,52 @@ model receptor{
   capacidade_recebimento   Int
   alimentos_recebidos      Int
   criado_em                DateTime             @default(now())
-  Atualizado_em            DateTime             @updatedAt 
+  Atualizado_em            DateTime             @updatedAt
+  agendamento_p            agendamento[]
+ 
 }
 
+
+//TABELA AGENDAMENTO
+enum statusENUM {
+  INICIADO
+  ACEITO
+  CONCLUIDO
+  RECEBIDO
+}
+
+model agendamento {
+  id                       String              @id @default(uuid())
+  data_hora                DateTime
+  status                   statusENUM
+  observacoes              Int
+  criado_em                DateTime            @default(now())
+  atualizado_em            DateTime            @updatedAt
+  alimentoId               String
+  distribuidorId          String
+  receptorId               String
+  noticacoes_p             notificacoes[]
+
+  alimentos                alimento            @relation(fields: [alimentoId], references: [id])
+  distribuidores           distribuidor        @relation(fields: [distribuidorId ], references: [id])
+  receptores               receptor            @relation(fields: [receptorId], references: [id])
+}
+
+//TABELA NOTIFICACOES
 enum tipagemENUM {
   IMPORTANTE
   URGENTE
+  OUTRAS
 }
 
 model notificacoes {
-  id                     String   @id @default(uuid()) 
+  id                     String         @id @default(uuid()) 
   categoria              tipagemENUM
   mensagem               String
   destinatario           String
   lida                   Boolean
-  criado_em              DateTime @default(now())
+  criado_em              DateTime       @default(now())
+  agendamentoId          String
+
+  agendamentos          agendamento     @relation(fields:  [agendamentoId], references: [id])
 }

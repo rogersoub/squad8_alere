@@ -17,7 +17,8 @@ export async function createDoacao(db){
             doador_nome: db.doador_nome,
             data_doacao: db.data_doacao,
             localizacao: db.localizacao,
-            validado: db.validado,          
+            validado: db.validado, 
+            alimentoId: db.alimentoId,         
         },
     });
 
@@ -44,6 +45,7 @@ export async function deleteDoacao(id){
             data_doacao: db.data_doacao,
             localizacao: db.localizacao,
             validado: db.validado,
+            alimentoId: db.alimentoId,
         },
     });
     return update;

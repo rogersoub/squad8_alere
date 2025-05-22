@@ -16,6 +16,7 @@ export async function createNotificacoes(db){
             mensagem: db.mensagem,
             destinatario: db.destinatario,
             lida: db.lida,
+            agendamentoId: db.agendamentoId, 
         },
     });
     return created;
@@ -38,6 +39,7 @@ export async function updateNotificacoes(id, db){
             mensagem: db.mensagem,
             destinatario: db.destinatario,
             lida: db.lida,
+            agendamentoId : db.agendamentoId,
         },
     });
     return update;

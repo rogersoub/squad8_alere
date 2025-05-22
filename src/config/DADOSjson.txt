@@ -51,7 +51,7 @@
     "descricao": "Pacote de arroz integral 1kg",
     "peso": 1000,
     "validade": "2025-06-10",
-    "categoria": "Grãos",
+    "categoria": "LEGUME",
     "estado": 1,
     "imagem_url": "https://exemplo.com/imagens/arroz.jpg",
     "Atualizado_em": "2025-05-10T10:00:00Z"
@@ -61,7 +61,7 @@
     "descricao": "Feijão preto tipo 1",
     "peso": 1000,
     "validade": "2025-05-20",
-    "categoria": "Grãos",
+    "categoria": "LEGUME",
     "estado": 1,
     "imagem_url": "https://exemplo.com/imagens/feijao.jpg",
     "Atualizado_em": "2025-05-09T09:30:00Z"
