@@ -23,13 +23,19 @@
                     data_hora,                
                     status,                   
                     observacoes,
+                    alimento_nome,
+                    distribuidor_nome,
+                    receptor_nome,
                 } = req.body 
 
                 //validando se tem
                 if(
                     !data_hora ||               
                     !status ||                 
-                    !observacoes
+                    !observacoes||
+                    !alimento_nome ||
+                    !distribuidor_nome ||
+                    !receptor_nome
                 ){
 
                 res.status(400).json({message: "Adicione todos dados corretamente"});
@@ -40,6 +46,9 @@
                     data_hora,                
                     status,                   
                     observacoes,
+                    alimento_nome,
+                    distribuidor_nome,
+                    receptor_nome,
                 });
 
                 res.status(201).json({
@@ -79,13 +88,19 @@
                 data_hora,                
                     status,                   
                     observacoes,
+                    alimento_nome,
+                    distribuidor_nome,
+                    receptor_nome,
             } = req.body;
 
             //validando se tem
             if(
                 !data_hora ||               
                 !status ||                 
-                !observacoes
+                !observacoes ||
+                !alimento_nome ||
+                !distribuidor_nome ||
+                !receptor_nome
             ){
                 res.status(400).json({message: "Adicione todos dados corretamente"});
             }
@@ -95,6 +110,9 @@
                     data_hora,                
                     status,                   
                     observacoes,
+                    alimento_nome,
+                    distribuidor_nome,
+                    receptor_nome,
                 });
                 if(!Agendamento){
                     return res.status(404).json({message: "Agendamento não encontrado"});

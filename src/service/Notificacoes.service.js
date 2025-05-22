@@ -14,7 +14,7 @@ export async function createNotificacoes(db){
         data: {
             categoria: db.categoria,
             mensagem: db.mensagem,
-            destinatario: db.destinatario,
+            receptor: db.receptor,
             lida: db.lida,
         },
     });
@@ -36,7 +36,7 @@ export async function updateNotificacoes(id, db){
         data:{
             categoria: db.categoria,
             mensagem: db.mensagem,
-            destinatario: db.destinatario,
+            receptor: db.receptor,
             lida: db.lida,
         },
     });

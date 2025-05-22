@@ -15,6 +15,9 @@ export async function createAgendamento(db) {
             data_hora : db.data_hora,                
             status : db.status,                   
             observacoes : db.observacoes,
+            alimento_nome: db.alimento_nome,
+            distribuidor_nome: db.distribuidor_nome,
+            receptor_nome: db.receptor_nome,
         }
     });
     return created;
@@ -42,6 +45,9 @@ export async function uptadeAgendamento(id, db){
             data_hora : db.data_hora,                
             status : db.status,                   
             observacoes : db.observacoes,
+            alimento_nome: db.alimento_nome,
+            distribuidor_nome: db.distribuidor_nome,
+            receptor_nome: db.receptor_nome,
         },
     });
     return uptade;

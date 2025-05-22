@@ -22,7 +22,7 @@ class NotificacoesController{
         const { 
             categoria, 
             mensagem, 
-            destinatario, 
+            receptor, 
             lida, 
         } = req.body
         
@@ -30,7 +30,7 @@ class NotificacoesController{
         if(
             !categoria || 
             !mensagem || 
-            !destinatario || 
+            !receptor || 
             !lida
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
@@ -39,7 +39,7 @@ class NotificacoesController{
         const NotificacoesCre = await createNotificacoes({
             categoria, 
             mensagem, 
-            destinatario, 
+            receptor, 
             lida,
         }); 
 
@@ -54,14 +54,14 @@ class NotificacoesController{
         const { 
             categoria, 
             mensagem, 
-            destinatario, 
+            receptor, 
             lida,  
         } = req.body;
 
         if(
             !categoria || 
             !mensagem || 
-            !destinatario || 
+            !receptor || 
             !lida
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
@@ -70,7 +70,7 @@ class NotificacoesController{
             const NotificacoesUp = await updateNotificacoes(id, {
                 categoria, 
                 mensagem, 
-                destinatario, 
+                receptor, 
                 lida,  
             });
 

@@ -13,9 +13,9 @@ export async function createReceptor(db) {
     const created = await prisma.receptor.create({
         data: {
             nome: db.nome,
-            tipo: db.email,
-            contato: db.telefone,
+            tipo: db.tipo,
             endereco: db.endereco,
+            contato: db.contato,
             capacidade_recebimente: db.capacidade,
             alimentos_recebidos: db.alimentos,
         }
@@ -43,9 +43,9 @@ export async function uptadeReceptor(id, db){
         where: { id },
         data: {
             nome: db.nome,
-            tipo: db.email,
-            contato: db.telefone,
+            tipo: db.tipo,
             endereco: db.endereco,
+            contato: db.contato,
             capacidade_recebimente: db.capacidade,
             alimentos_recebidos: db.alimentos,
         },

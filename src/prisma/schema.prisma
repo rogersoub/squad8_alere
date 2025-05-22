@@ -29,13 +29,8 @@ model alimento {
   imagem_url                  String
   criado_em                   DateTime           @default(now())
   atualizado_em               DateTime           @updatedAt 
-  distribuidor_p              distribuidor[]
-  doacoes_p                   doacao[]
-  agendamento_p               agendamento[]
-  alimentoDistribuidor_p      alimentoDistribuidor[]
-//doacao          doacao[]
 }
-//[] são o ponto de partida da relacao
+
 
 
 //documento(cnpj/cpf) alimentos vai receber de alimento
@@ -44,29 +39,13 @@ model distribuidor {
   nome                    String   
   contato                 String
   documento               String
+  alimentos               String
   regiao_atuacao          String
   criado_em               DateTime           @default(now())
   atualizado_em           DateTime           @updatedAt 
-  alimentoId              String
-  agendamento_p           agendamento[]
-  alimentoDistribuidor    alimentoDistribuidor[]
-
-  alimentos       alimento           @relation(fields: [alimentoId], references: [id])
 }
 //referencia da tabela alimento
 
-//TABELA INTERMEDIÁRIA
-model alimentoDistribuidor {
-  alimentoId      String
-  distribuidorId  String
-  criado_em       DateTime             @default(now())
-  atualizado_em   DateTime             @updatedAt 
-
-  alimento        alimento             @relation(fields: [alimentoId], references: [id])
-  distribuidor    distribuidor         @relation(fields: [distribuidorId], references: [id])
-
-  @@id([alimentoId, distribuidorId])
-}
 
 
 
@@ -94,9 +73,6 @@ model doacao {
   validado           Boolean       @default(false)
   criado_em          DateTime      @default(now())
   atualizado_em      DateTime      @updatedAt
-  alimentoId         String
-
-  alimentos           alimento      @relation(fields:  [alimentoId], references: [id])
 }
 //referencia de alimento
 
@@ -122,7 +98,6 @@ model receptor{
   alimentos_recebidos      Int
   criado_em                DateTime             @default(now())
   Atualizado_em            DateTime             @updatedAt
-  agendamento_p            agendamento[]
  
 }
 
@@ -140,16 +115,11 @@ model agendamento {
   data_hora                DateTime
   status                   statusENUM
   observacoes              Int
+  alimento_nome            String
+  distribuidor_nome        String
+  receptor_nome            String
   criado_em                DateTime            @default(now())
   atualizado_em            DateTime            @updatedAt
-  alimentoId               String
-  distribuidorId          String
-  receptorId               String
-  noticacoes_p             notificacoes[]
-
-  alimentos                alimento            @relation(fields: [alimentoId], references: [id])
-  distribuidores           distribuidor        @relation(fields: [distribuidorId ], references: [id])
-  receptores               receptor            @relation(fields: [receptorId], references: [id])
 }
 
 //TABELA NOTIFICACOES
@@ -163,10 +133,7 @@ model notificacoes {
   id                     String         @id @default(uuid()) 
   categoria              tipagemENUM
   mensagem               String
-  destinatario           String
+  receptor               String
   lida                   Boolean
   criado_em              DateTime       @default(now())
-  agendamentoId          String
-
-  agendamentos          agendamento     @relation(fields:  [agendamentoId], references: [id])
 }
