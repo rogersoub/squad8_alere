@@ -76,16 +76,29 @@ class DoacaoController{
         ) {
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         }    
+        try{
+            const doacaoUp = await updateDoacao(id, {
+                alimento_nome, 
+                quantidade, 
+                doador_nome,
+                data_doacao, 
+                localizacao,
+                validado, 
+            });
 
-        const doacaoUp = await updateDoacao(id, {
-            alimento_nome, 
-            quantidade, 
-            doador_nome,
-            data_doacao, 
-            localizacao,
-            validado, 
-    });
-}
+            if(!doacaoUp)return res.status(404).json({
+            message:"Doação não encontrado"
+            });
+        
+            res.status(200).json({
+                message:"Doação Atualizada!", DoacaoAtualizada:doacaoUp
+            });
+
+        }catch(error){
+                res.status(500).json({ message:"Erro ao atualizar doação", error:error.message });
+        }
+
+    }
 
    // controller do DELETE
     async deleteDoacaoController(req, res) {

@@ -78,7 +78,7 @@ class DistribuidorController{
 
 
     //UPDATE (delete+create)
-     async updateDistribuidorControlller(){
+     async updateDistribuidorControlller(req,res){
         //parametro da requisicao
         const {id} = req.params; 
         //corpo da requisicao

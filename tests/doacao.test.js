@@ -2,8 +2,9 @@
 import request from 'supertest';
 import app from '../src/app.js';
 
-let id;
+
 describe("Testes da rota /estatistica", () => {
+  let id;
   test("GET /doacao/", async () => {
     const res = await request(app).get("/doacao/");
     expect(res.statusCode).toBe(200);
@@ -18,10 +19,10 @@ describe("Testes da rota /estatistica", () => {
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",
-        validado: false,
+        validado: true,
       });
     expect(res.statusCode).toBe(201);
-    id = res.body.id; // armazena o ID retornado
+    id = res.body.doacaoCre.id; // armazena o ID retornado
   });
 
   test("PUT /doacao/atualizar/:id", async () => {
@@ -33,7 +34,7 @@ describe("Testes da rota /estatistica", () => {
         doador_nome: "João",
         data_doacao: "2023-10-01", 
         localizacao: "Rua A, 123",
-        validado: false,
+        validado: true,
       });
     expect(res.statusCode).toBe(200);
   });

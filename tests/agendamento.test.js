@@ -2,9 +2,10 @@
 import request from 'supertest';
 import app from '../src/app.js';
 
-let id;
+
 
 describe("Testes da rota /agendamento", () => {
+  let id;
   test("GET /agendamento/", async () => {
     const res = await request(app).get("/agendamento/");
     expect(res.statusCode).toBe(200);
@@ -23,12 +24,10 @@ describe("Testes da rota /agendamento", () => {
       });
     expect(res.statusCode).toBe(201);
     // salva o id retornado
-    id = res.body.id;
-    expect(id).toBeDefined(); // opcional: garante que o id veio
-    console.log(id)
+    id = res.body.agendamentoCre.id;
   });
 
-  test("PUT /agendamento/atualizar/:id", async () => {
+  test("PUT agendamento/atualizar/:id", async () => {
     const res = await request(app)
       .put(`/agendamento/atualizar/${id}`)
       .send({

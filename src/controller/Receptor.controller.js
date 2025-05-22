@@ -2,7 +2,7 @@
         getReceptor,
         createReceptor,
         deleteReceptor,
-        uptadeReceptor,
+        updateReceptor,
     } from "../service/Receptor.service.js";
 
     //depois colocar logs 
@@ -44,7 +44,7 @@
                 }
 
             try{
-                const receptor = await createReceptor({
+                const receptorCre = await createReceptor({
                     nome,
                     tipo,
                     endereco,
@@ -55,7 +55,7 @@
 
                 res.status(201).json({
                     message: "Receptor criado com sucesso",
-                    receptor,
+                    receptorCre
                 });
             }catch(error){
                 res.status(500).json({ message:"Erro ao cadastrar Receptor", error:error.message });
@@ -82,7 +82,7 @@
 
 
         //UPDATE
-        async uptadeReceptorController(){
+        async uptadeReceptorController(req,res){
             //parametro da requsicao
             const { id } = req.params;
             //corpo da requisicao
@@ -107,7 +107,7 @@
             }
 
             try{
-                const receptor = await uptadeReceptor(id,{
+                const receptorUp = await updateReceptor(id,{
                     nome,
                     tipo,
                     endereco,
@@ -115,13 +115,13 @@
                     capacidade_recebimento,
                     alimentos_recebidos,
                 });
-                if(!receptor){
+                if(!receptorUp){
                     return res.status(404).json({message: "Receptor não encontrado"});
                 }
 
                 res.status(200).json({
                     message: "Receptor atualizado com sucesso",
-                    receptor,
+                    receptor: receptorUp
                 });
             }catch(error){
                 res.status(500).json({ message:"Erro ao atualizar Receptor", error:error.message });

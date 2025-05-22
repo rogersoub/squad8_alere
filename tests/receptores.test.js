@@ -25,7 +25,7 @@ let id;
       });
     expect(res.statusCode).toBe(201);
     // salva o id retornado
-    id = res.body.id;
+    id = res.body.receptorCre.id;
   });
 
   test("PUT /receptor/atualizar/:id", async () => {

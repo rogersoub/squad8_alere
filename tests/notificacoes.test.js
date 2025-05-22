@@ -15,7 +15,7 @@ describe("Testes da rota /notificacoes", () => {
         lida: true,
       });
     expect(res.statusCode).toBe(201);
-    idCriado= res.body.id; // armazena o ID retornado
+    idCriado= res.body.notificacoesCre.id; // armazena o ID retornado
   });
 
   test("GET /notificacoes/", async () => {

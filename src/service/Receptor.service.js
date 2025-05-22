@@ -25,21 +25,17 @@ export async function createReceptor(db) {
 }
 
 export async function deleteReceptor(id) { 
-    const consists = await prisma.receptor. findUnique({id} );
+    const consists = await prisma.receptor.findUnique({where:{id}});
     if (!consists) return null;
 
-    const del = await prisma.receptor.delete ({
-        where: {
-            id: id
-        }
-    }); 
+    const del = await prisma.receptor.delete ({where: {id}}); 
 
     return del;
 }
 
 //UPDATE
-export async function uptadeReceptor(id, db){
-    const uptade = await prisma.alimento.uptade ({
+export async function updateReceptor(id, db){
+    const update = await prisma.receptor.update({
         where: { id },
         data: {
             nome: db.nome,
@@ -50,5 +46,5 @@ export async function uptadeReceptor(id, db){
             alimentos_recebidos: db.alimentos_recebidos
         },
     });
-    return uptade;
+    return update;
 }

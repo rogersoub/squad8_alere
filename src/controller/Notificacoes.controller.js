@@ -36,14 +36,14 @@ class NotificacoesController{
             return res.status(400).json({message:"Preencha todos os campos obrigatórios!"});
         } 
 
-        const NotificacoesCre = await createNotificacoes({
+        const notificacoesCre = await createNotificacoes({
             categoria, 
             mensagem, 
             receptor, 
             lida,
         }); 
 
-    res.status(201).json({message:"Notificação criada com sucesso!", NotificacoesCre});
+    res.status(201).json({message:"Notificação criada com sucesso!", notificacoesCre});
 
     }
 
@@ -94,7 +94,7 @@ class NotificacoesController{
 
         const NotificacoesDel = await deleteNotificacoes(id);
 
-        if(!doacaoDel) {
+        if(!NotificacoesDel) {
             return res.status(404).json({message:"Notificação não encontrada!"});
         }
 

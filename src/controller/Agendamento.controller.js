@@ -42,7 +42,7 @@
                 }
 
             try{
-                const Agendamento = await createAgendamento({
+                const agendamentoCre = await createAgendamento({
                     data_hora,                
                     status,                   
                     observacoes,
@@ -53,7 +53,7 @@
 
                 res.status(201).json({
                     message: "Agendamento criado com sucesso",
-                    Agendamento,
+                    agendamentoCre,
                 });
             }catch(error){
                 res.status(500).json({ message:"Erro ao cadastrar um agendamento", error:error.message });
@@ -66,31 +66,29 @@
             //parametro da requisicao
             const { id } = req.params;
 
-            const receptor = await deleteAgendamento(id);
+            const agendamentoDel = await deleteAgendamento(id);
 
-            if(!receptor){
+            if(!agendamentoDel){
                 return res.status(404).json({message: "Agendamento não encontrado"});
             }
 
-            res.status(200).json({message: "Agendamento deletado com sucesso"
-                
-            });
+            res.status(200).json({message: "Agendamento deletado com sucesso", AgendamentoDeletado: agendamentoDel});
 
         }
 
 
         //UPDATE
-        async uptadeAgendamentoController(){
+        async uptadeAgendamentoController(req,res){
             //parametro da requsicao
             const { id } = req.params;
             //corpo da requisicao
             const {
                 data_hora,                
-                    status,                   
-                    observacoes,
-                    alimento_nome,
-                    distribuidor_nome,
-                    receptor_nome,
+                status,                   
+                observacoes,
+                alimento_nome,
+                distribuidor_nome,
+                receptor_nome,
             } = req.body;
 
             //validando se tem
@@ -106,7 +104,7 @@
             }
 
             try{
-                const Agendamento = await uptadeAgendamento(id,{
+                const agendamentoUp = await uptadeAgendamento(id,{
                     data_hora,                
                     status,                   
                     observacoes,
@@ -114,14 +112,16 @@
                     distribuidor_nome,
                     receptor_nome,
                 });
-                if(!Agendamento){
+                
+                if(!agendamentoUp){
                     return res.status(404).json({message: "Agendamento não encontrado"});
                 }
 
                 res.status(200).json({
                     message: "Agendamento atualizado com sucesso",
-                    receptor,
+                    AgendamentoAtualizado: agendamentoUp
                 });
+
             }catch(error){
                 res.status(500).json({ message:"Erro ao atualizar Agendamento", error:error.message });
             }

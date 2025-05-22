@@ -26,7 +26,7 @@ let id;
        console.log("Resposta do POST:", res.body);
 
     expect(res.statusCode).toBe(201);
-    id = res.body.id; // armazena o ID retornado
+    id = res.body.estatisticaCre.id; // armazena o ID retornado
   });
 
   test("PUT /estatistica/atualizar/:id", async () => {

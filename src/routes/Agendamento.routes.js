@@ -5,25 +5,25 @@ const AgendamentoRouter = Router();
 //READ das rotas 
 /**
  * @swagger
- * /Receptor:
+ * /agendamento:
  *   get:
- *     summary: Lista todos os receptores cadastrados
+ *     summary: Lista todos os Agendamentos cadastrados
  *     tags:
- *      - Receptores
+ *      - Agendamentos
  *     responses:
  *       200:
- *         description: Lista todos os receptores cadastrados
+ *         description: Lista todos os Agendamentos cadastrados
  */
 AgendamentoRouter.get("/", AgendamentoController.getAgendamentoController);
 
 //CREATE das rotas
 /**
  * @swagger
- * /Receptor/cadastro:
+ * /agendamento/cadastro:
  *   post:
- *     summary: Cadastra um novo receptor
+ *     summary: Cadastra um novo Agendamento
  *     tags:
- *       - Receptores
+ *       - Agendamentos
  *     requestBody:
  *       required: true
  *       content:
@@ -51,7 +51,7 @@ AgendamentoRouter.get("/", AgendamentoController.getAgendamentoController);
  *                 example: 250
  *     responses:
  *       200:
- *         description: Cadastra um novo receptor
+ *         description: Cadastra um novo Agendamento
  *       400:
  *         description: Dados inválidos fornecidos
  */
@@ -61,16 +61,16 @@ AgendamentoRouter.post("/cadastro", AgendamentoController.createAgendamentoContr
 //UPDATE das rotas
 /**
  * @swagger
- * /Receptor/atualizar/{id}:
+ * /agendamento/atualizar/{id}:
  *   put:
- *     summary: Atualiza os dados de um receptor pelo ID
+ *     summary: Atualiza os dados de um Agendamento pelo ID
  *     tags:
- *       - Receptores
+ *       - Agendamentos
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID do receptor a ser atualizado
+ *         description: ID do Agendamento a ser atualizado
  *         schema:
  *           type: string
  *     requestBody:
@@ -102,7 +102,7 @@ AgendamentoRouter.post("/cadastro", AgendamentoController.createAgendamentoContr
  *       200:
  *         description: Dados atualizados com sucesso
  *       404:
- *         description: Receptor não encontrado
+ *         description: Agendamento não encontrado
  */
 
 AgendamentoRouter.put("/atualizar/:id", AgendamentoController.uptadeAgendamentoController);
@@ -110,23 +110,23 @@ AgendamentoRouter.put("/atualizar/:id", AgendamentoController.uptadeAgendamentoC
 //DELETE das rotas
 /**
  * @swagger
- * /Receptor/deletar/{id}:
+ * /agendamento/deletar/{id}:
  *   delete:
- *     summary: Remove um receptor pelo ID
+ *     summary: Remove um Agendamento pelo ID
  *     tags:
- *      - Receptores
+ *      - Agendamentos
  *     parameters:
  *       - name: id
  *         in: path
  *         required: true
- *         description: ID do receptor a ser removido
+ *         description: ID do Agendamento a ser removido
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Receptor removido com sucesso
+ *         description: Agendamento removido com sucesso
  *       404:
- *         description: Receptor não encontrado
+ *         description: Agendamento não encontrado
  */  
 AgendamentoRouter.delete("/deletar/:id", AgendamentoController.deleteAgendamentoController);
 

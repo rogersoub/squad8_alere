@@ -25,21 +25,17 @@ export async function createAgendamento(db) {
 }
 
 export async function deleteAgendamento(id) { 
-    const consists = await prisma.agendamento.findUnique({id} );
+    const consists = await prisma.agendamento.findUnique({where:{id}});
     if (!consists) return null;
 
-    const del = await prisma.agendamento.delete ({
-        where: {
-            id: id
-        }
-    }); 
+    const del = await prisma.agendamento.delete ({where: {id} }); 
 
     return del;
 }
 
 //UPDATE
 export async function uptadeAgendamento(id, db){
-    const uptade = await prisma.agendamento.uptade ({
+    const update = await prisma.agendamento.update({
         where: { id },
         data: {
             data_hora : db.data_hora,                
@@ -50,5 +46,5 @@ export async function uptadeAgendamento(id, db){
             receptor_nome: db.receptor_nome,
         },
     });
-    return uptade;
+    return update;
 }

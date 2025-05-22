@@ -1,3 +1,4 @@
+// tests/alimento.test.js
 import request from 'supertest';
 import app from '../src/app.js';
 
@@ -21,8 +22,7 @@ describe("Testes da rota /distribuidor", () => {
       });
     expect(res.statusCode).toBe(201);
      // salva o id retornado
-    id = res.body.id;
-    expect(id).toBeDefined(); // opcional: garante que o id veio
+    id = res.body.distribuidorCre.id;
   });
 
   test("PUT /distribuidor/atualizar/:id", async () => {
