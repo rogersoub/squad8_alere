@@ -24,7 +24,6 @@ class DistribuidorController{
             contato,
             documento,
             regiao_atuacao,
-            alimentoId,
         } = req.body 
 
         //validando se tem
@@ -32,8 +31,7 @@ class DistribuidorController{
             !nome ||           
             !contato ||
             !documento || 
-            !regiao_atuacao ||
-            ! alimentoId
+            !regiao_atuacao
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
@@ -45,7 +43,6 @@ class DistribuidorController{
                 documento,
                 alimentos,
                 regiao_atuacao,
-                alimentoId,
             });
 
             res.status(201).json({
@@ -89,7 +86,6 @@ class DistribuidorController{
             documento,
             alimentos,
             regiao_atuacao,
-            alimentoId,
         } = req.body 
 
         //validando se tem
@@ -98,8 +94,7 @@ class DistribuidorController{
             !contato ||
             !documento ||
             !alimentos ||
-            !regiao_atuacao ||
-            !alimentoId
+            !regiao_atuacao
         ){
             res.status(400).json({message:"Adicione todos dados corretamente",});
         }
@@ -111,7 +106,6 @@ class DistribuidorController{
                 documento,
                 alimentos,
                 regiao_atuacao,
-                alimentoId,
             });
             if(!distribuidorUp)return res.status(404).json({
                 message:"distribuidor não enconstrado"

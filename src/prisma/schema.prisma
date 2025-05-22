@@ -29,7 +29,6 @@ model alimento {
   imagem_url                  String
   criado_em                   DateTime           @default(now())
   atualizado_em               DateTime           @updatedAt 
-  distribuidor_p              distribuidor[]
   doacoes_p                   doacao[]
   agendamento_p               agendamento[]
   alimentoDistribuidor_p      alimentoDistribuidor[]
@@ -47,11 +46,9 @@ model distribuidor {
   regiao_atuacao          String
   criado_em               DateTime           @default(now())
   atualizado_em           DateTime           @updatedAt 
-  alimentoId              String
+  
   agendamento_p           agendamento[]
   alimentoDistribuidor    alimentoDistribuidor[]
-
-  alimentos       alimento           @relation(fields: [alimentoId], references: [id])
 }
 //referencia da tabela alimento
 

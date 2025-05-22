@@ -18,7 +18,6 @@ export async function createDistribuidor(db){
             contato: db.contato,
             documento: db.documento,
             regiao_atuacao: db.regiao_atuacao,
-            alimentoId: db.alimentoId,
         },
     });
     return created;
@@ -43,9 +42,7 @@ export async function updateDistribuidor(id, db){
             nome: db.nome,                       
             contato: db.contato,
             documento: db.documento,
-            alimentos: db.alimentos,
             regiao_atuacao: db.regiao_atuacao,
-            alimentoId: db.alimentoId,  
         },
     });
     return update;
